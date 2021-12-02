@@ -17,7 +17,7 @@ const {
   updateSingleItem,
 } = require('./user.service');
 // Item schema
-const Item = {
+const ItemUser = {
   type: 'object',
   properties: {
     id: { type: 'string' },
@@ -27,54 +27,59 @@ const Item = {
   },
 };
 
-const getItemsOpts = {
+const getUsersOptions = {
   schema: {
     response: {
       200: {
         type: 'array',
-        items: Item,
+        items: ItemUser,
       },
     },
   },
   handler: getAllItems,
 };
 
-const getItemOpts = {
+const getUserOptions = {
   schema: {
     response: {
-      200: Item,
+      200: ItemUser,
     },
   },
   handler: getSingleItem,
 };
 
-const postItemOpts = {
+const postUserOptions = {
   schema: {
     response: {
-      201: Item,
+      201: ItemUser,
     },
   },
   handler: addSingleItem,
 };
-const deleteItemOpts = {
+const deleteUserOptions = {
   handler: deleteSingleItem,
 };
 
-const updateItemOpts = {
+const updateUserOptions = {
+  schema: {
+    response: {
+      200: ItemUser,
+    },
+  },
   handler: updateSingleItem,
 };
 
 function userRouter(fastify, options, next) {
   // Get all items
-  fastify.get('/users', getItemsOpts);
+  fastify.get('/users', getUsersOptions);
   // Get single item
-  fastify.get('/users/:id', getItemOpts);
+  fastify.get('/users/:id', getUserOptions);
   // create item
-  fastify.post('/users', postItemOpts);
+  fastify.post('/users', postUserOptions);
   // delete item
-  fastify.delete('/users/:id', deleteItemOpts);
+  fastify.delete('/users/:id', deleteUserOptions);
   // update
-  fastify.put('/users/:id', updateItemOpts);
+  fastify.put('/users/:id', updateUserOptions);
   next();
 }
 

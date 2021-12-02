@@ -6,31 +6,31 @@
 const { v4: uuidv4 } = require('uuid');
 let items = require('./board.memory.repository');
 
-const getAllItems1 = (_, reply) => {
+const getAllBoards = (_, reply) => {
   reply.send(items);
 };
 
-const getSingleItem1 = (request, reply) => {
+const getSingleBoard = (request, reply) => {
   const { id } = request.params;
   const currentItem = items.find((item) => item.id === id);
 
   reply.send(currentItem);
 };
 
-const addSingleItem1 = (request, reply) => {
+const addBoard = (request, reply) => {
   const { name, login, password } = request.body;
   const item = { name, login, password, id: uuidv4() };
   items = [...items, item];
   reply.code(201).send(item);
 };
 
-const deleteSingleItem1 = (request, reply) => {
+const deleteBoard = (request, reply) => {
   const { id } = request.params;
   items = items.filter((item) => item.id !== id);
   reply.send('Deleted');
 };
 
-const updateSingleItem1 = (request, reply) => {
+const updateBoard = (request, reply) => {
   const { id } = request.params;
   const { name, login } = request.body;
   items = items.map((elem) => (elem.id === id ? { id, name, login } : elem));
@@ -39,9 +39,9 @@ const updateSingleItem1 = (request, reply) => {
 };
 
 module.exports = {
-  getAllItems1,
-  getSingleItem1,
-  addSingleItem1,
-  deleteSingleItem1,
-  updateSingleItem1,
+  getAllBoards,
+  getSingleBoard,
+  addBoard,
+  deleteBoard,
+  updateBoard,
 };

@@ -10,14 +10,14 @@
 
 // module.exports = router;
 const {
-  getAllItems1,
-  getSingleItem1,
-  addSingleItem1,
-  deleteSingleItem1,
-  updateSingleItem1,
+  getAllBoards,
+  getSingleBoard,
+  addBoard,
+  deleteBoard,
+  updateBoard,
 } = require('./board.service');
 // Item schema
-const Item1 = {
+const ItemBoard = {
   type: 'object',
   properties: {
     id: { type: 'string' },
@@ -27,54 +27,59 @@ const Item1 = {
   },
 };
 
-const getItemsOpts1 = {
+const getBoardsOptions = {
   schema: {
     response: {
       200: {
         type: 'array',
-        items: Item1,
+        items: ItemBoard,
       },
     },
   },
-  handler: getAllItems1,
+  handler: getAllBoards,
 };
 
-const getItemOpts1 = {
+const getBoardOptions = {
   schema: {
     response: {
-      200: Item1,
+      200: ItemBoard,
     },
   },
-  handler: getSingleItem1,
+  handler: getSingleBoard,
 };
 
-const postItemOpts1 = {
+const postBoardOptions = {
   schema: {
     response: {
-      201: Item1,
+      201: ItemBoard,
     },
   },
-  handler: addSingleItem1,
+  handler: addBoard,
 };
-const deleteItemOpts1 = {
-  handler: deleteSingleItem1,
+const deleteBoardOptions = {
+  handler: deleteBoard,
 };
 
-const updateItemOpts1 = {
-  handler: updateSingleItem1,
+const updateBoardOptions = {
+  schema: {
+    response: {
+      200: ItemBoard,
+    },
+  },
+  handler: updateBoard,
 };
 
 function boardRouter(fastify, options, next) {
   // Get all items
-  fastify.get('/boards', getItemsOpts1);
+  fastify.get('/boards', getBoardsOptions);
   // Get single item
-  fastify.get('/boards/:id', getItemOpts1);
+  fastify.get('/boards/:id', getBoardOptions);
   // create item
-  fastify.post('/boards', postItemOpts1);
+  fastify.post('/boards', postBoardOptions);
   // delete item
-  fastify.delete('/boards/:id', deleteItemOpts1);
+  fastify.delete('/boards/:id', deleteBoardOptions);
   // update
-  fastify.put('/boards/:id', updateItemOpts1);
+  fastify.put('/boards/:id', updateBoardOptions);
   next();
 }
 
