@@ -10,14 +10,14 @@
 
 // module.exports = router;
 const {
-  getAllItems,
-  getSingleItem,
-  addSingleItem,
-  deleteSingleItem,
-  updateSingleItem,
-} = require('./user.service');
+  getAllItems1,
+  getSingleItem1,
+  addSingleItem1,
+  deleteSingleItem1,
+  updateSingleItem1,
+} = require('./board.service');
 // Item schema
-const Item = {
+const Item1 = {
   type: 'object',
   properties: {
     id: { type: 'string' },
@@ -27,55 +27,55 @@ const Item = {
   },
 };
 
-const getItemsOpts = {
+const getItemsOpts1 = {
   schema: {
     response: {
       200: {
         type: 'array',
-        items: Item,
+        items: Item1,
       },
     },
   },
-  handler: getAllItems,
+  handler: getAllItems1,
 };
 
-const getItemOpts = {
+const getItemOpts1 = {
   schema: {
     response: {
-      200: Item,
+      200: Item1,
     },
   },
-  handler: getSingleItem,
+  handler: getSingleItem1,
 };
 
-const postItemOpts = {
+const postItemOpts1 = {
   schema: {
     response: {
-      201: Item,
+      201: Item1,
     },
   },
-  handler: addSingleItem,
+  handler: addSingleItem1,
 };
-const deleteItemOpts = {
-  handler: deleteSingleItem,
-};
-
-const updateItemOpts = {
-  handler: updateSingleItem,
+const deleteItemOpts1 = {
+  handler: deleteSingleItem1,
 };
 
-function userRouter(fastify, options, next) {
+const updateItemOpts1 = {
+  handler: updateSingleItem1,
+};
+
+function boardRouter(fastify, options, next) {
   // Get all items
-  fastify.get('/users', getItemsOpts);
+  fastify.get('/boards', getItemsOpts1);
   // Get single item
-  fastify.get('/users/:id', getItemOpts);
+  fastify.get('/boards/:id', getItemOpts1);
   // create item
-  fastify.post('/users', postItemOpts);
+  fastify.post('/boards', postItemOpts1);
   // delete item
-  fastify.delete('/users/:id', deleteItemOpts);
+  fastify.delete('/boards/:id', deleteItemOpts1);
   // update
-  fastify.put('/users/:id', updateItemOpts);
+  fastify.put('/boards/:id', updateItemOpts1);
   next();
 }
 
-module.exports = userRouter;
+module.exports = boardRouter;
