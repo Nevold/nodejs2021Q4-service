@@ -12,28 +12,38 @@ const getAllBoards = (_, reply) => {
 
 const getSingleBoard = (request, reply) => {
   const { id } = request.params;
-  const currentItem = items.find((item) => item.id === id);
-
-  reply.send(currentItem);
+  const currentId = items.find((item) => item.id === id);
+  if (!currentId) {
+    reply.code(404).send('Not Found');
+  } else {
+    const currentItem = items.find((item) => item.id === id);
+    reply.send(currentItem);
+  }
 };
 
 const addBoard = (request, reply) => {
-  const { name, login, password } = request.body;
-  const item = { name, login, password, id: uuidv4() };
+  const { title, columns } = request.body;
+  const item = { id: uuidv4(), title, columns };
   items = [...items, item];
   reply.code(201).send(item);
 };
 
 const deleteBoard = (request, reply) => {
   const { id } = request.params;
-  items = items.filter((item) => item.id !== id);
-  reply.send('Deleted');
+  const currentId = items.find((item) => item.id === id);
+  if (!currentId) {
+    reply.code(404).send('Not Found');
+  } else {
+    items = items.filter((item) => item.id !== id);
+    reply.code(200).send('Deleted');
+  }
+  // reply.send(currentId);
 };
 
 const updateBoard = (request, reply) => {
   const { id } = request.params;
-  const { name, login } = request.body;
-  items = items.map((elem) => (elem.id === id ? { id, name, login } : elem));
+  const { title, columns } = request.body;
+  items = items.map((elem) => (elem.id === id ? { id, title, columns } : elem));
   const currentItem = items.find((item) => item.id === id);
   reply.send(currentItem);
 };

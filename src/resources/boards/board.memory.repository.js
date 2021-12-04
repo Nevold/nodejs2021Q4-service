@@ -1,9 +1,14 @@
 const items = [
-  {
-    id: 'fc7f4718-0bca-4e53-883d-83ce600ff13c',
-    name: 'Item One update',
-    login: '555',
-  },
+  // {
+  //   id: 1,
+  //   title: 'Autotest board1',
+  //   columns: [{ title: 'Backlog', order: 1 }],
+  // },
+  // {
+  //   id: 2,
+  //   title: 'Autotest board2',
+  //   columns: [{ title: 'Backlog', order: 1 }],
+  // },
 ];
 
 module.exports = items;

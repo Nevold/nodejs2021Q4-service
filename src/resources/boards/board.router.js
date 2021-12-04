@@ -21,9 +21,14 @@ const ItemBoard = {
   type: 'object',
   properties: {
     id: { type: 'string' },
-    name: { type: 'string' },
-    login: { type: 'string' },
-    // password: { type: 'string' },
+    title: { type: 'string' },
+    columns: {
+      type: 'array',
+      properties: {
+        title: { type: 'string' },
+        order: { type: 'number' },
+      },
+    },
   },
 };
 
@@ -57,6 +62,16 @@ const postBoardOptions = {
   handler: addBoard,
 };
 const deleteBoardOptions = {
+  // schema: {
+  //   response: {
+  //     200: {
+  //       type: 'object',
+  //       properties: {
+  //         message: { type: 'string' },
+  //       },
+  //     },
+  //   },
+  // },
   handler: deleteBoard,
 };
 
