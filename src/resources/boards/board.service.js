@@ -67,9 +67,11 @@ const getAllTasks = (request, reply) => {
 
 const getSingleTask = (request, reply) => {
   const { boardId, taskId } = request.params;
-  const currentItem = items.find((item) => item.id === boardId);
-  const currentTask = currentItem.columns.filter((item) => item.id === taskId);
-  reply.code(200).send(currentTask);
+  const currentItem = items.filter((item) => item.id === boardId);
+  const currentTask = currentItem[0].columns.filter(
+    (item) => item.id === taskId
+  );
+  reply.send(currentTask);
   // if (!currentTask) {
   //   reply.code(404).send('Not Found');
   // } else {
@@ -84,7 +86,7 @@ const addTask = (request, reply) => {
   if (!currentItem) {
     reply.code(404).send('Not Found');
   } else {
-    let currentTask = currentItem.columns;
+    const currentTask = currentItem.columns;
     const newTask = {
       id: uuidv4(),
       title,
@@ -94,10 +96,9 @@ const addTask = (request, reply) => {
       columnId,
       boardId: id,
     };
-    items = items.map((elem) => {
-      currentTask = [...currentTask, newTask];
-      return elem.id === id ? { id, title, columns: currentTask } : elem;
-    });
+    items = items.map((elem) =>
+      elem.id === id ? { id, title, columns: [...currentTask, newTask] } : elem
+    );
     reply.code(201).send(newTask);
   }
 };
@@ -115,11 +116,34 @@ const deleteTask = (request, reply) => {
 };
 
 const updateTask = (request, reply) => {
-  const { id } = request.params;
-  const { title, columns } = request.body;
-  items = items.map((elem) => (elem.id === id ? { id, title, columns } : elem));
-  const currentItem = items.find((item) => item.id === id);
-  reply.send(currentItem);
+  // const { id } = request.params;
+  // const { title, columns } = request.body;
+  // items = items.map((elem) => (elem.id === id ? { id, title, columns } : elem));
+  // const currentItem = items.find((item) => item.id === id);
+  // reply.send(currentItem);
+  const { title, columnId, description, order, userId } = request.body;
+  const { boardId: id } = request.params;
+  const currentItem = items.filter((item) => item.id === id);
+
+  if (!currentItem) {
+    reply.code(404).send('Not Found');
+  } else {
+    let currentTask = currentItem.columns;
+    const newTask = {
+      id: uuidv4(),
+      title,
+      order,
+      description,
+      userId,
+      columnId,
+      boardId: id,
+    };
+    items = items.map((elem) => {
+      currentTask = [...currentTask, newTask];
+      return elem.id === id ? { id, title, columns: currentTask } : elem;
+    });
+    reply.send(newTask);
+  }
 };
 
 module.exports = {

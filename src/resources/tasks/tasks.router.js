@@ -80,11 +80,11 @@ const deleteTaskOptions = {
 };
 
 const updateTaskOptions = {
-  schema: {
-    response: {
-      200: ItemTasks,
-    },
-  },
+  // schema: {
+  //   response: {
+  //     200: ItemTasks,
+  //   },
+  // },
   handler: updateTask,
 };
 
