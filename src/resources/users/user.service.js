@@ -1,8 +1,3 @@
-// const usersRepo = require('./user.memory.repository');
-
-// const getAll = () => usersRepo.getAll();
-
-// module.exports = { getAll };
 const { v4: uuidv4 } = require('uuid');
 let items = require('./user.memory.repository');
 

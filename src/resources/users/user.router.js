@@ -1,14 +1,3 @@
-// const router = require('express').Router();
-// const User = require('./user.model');
-// const usersService = require('./user.service');
-
-// router.route('/').get(async (req, res) => {
-//   const users = await usersService.getAll();
-//   // map user fields to exclude secret fields like "password"
-//   res.json(users.map(User.toResponse));
-// });
-
-// module.exports = router;
 const {
   getAllItems,
   getSingleItem,
@@ -16,14 +5,13 @@ const {
   deleteSingleItem,
   updateSingleItem,
 } = require('./user.service');
-// Item schema
+
 const ItemUser = {
   type: 'object',
   properties: {
     id: { type: 'string' },
     name: { type: 'string' },
     login: { type: 'string' },
-    // password: { type: 'string' },
   },
 };
 
@@ -70,15 +58,10 @@ const updateUserOptions = {
 };
 
 function userRouter(fastify, options, next) {
-  // Get all items
   fastify.get('/users', getUsersOptions);
-  // Get single item
   fastify.get('/users/:id', getUserOptions);
-  // create item
   fastify.post('/users', postUserOptions);
-  // delete item
   fastify.delete('/users/:id', deleteUserOptions);
-  // update
   fastify.put('/users/:id', updateUserOptions);
   next();
 }

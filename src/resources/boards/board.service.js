@@ -1,8 +1,3 @@
-// const usersRepo = require('./user.memory.repository');
-
-// const getAll = () => usersRepo.getAll();
-
-// module.exports = { getAll };
 const { v4: uuidv4 } = require('uuid');
 let items = require('./board.memory.repository');
 
@@ -40,7 +35,6 @@ const deleteBoard = (request, reply) => {
     items = items.filter((item) => item.id !== id);
     reply.code(200).send('Deleted');
   }
-  // reply.send(currentId);
 };
 
 const updateBoard = (request, reply) => {
@@ -51,7 +45,7 @@ const updateBoard = (request, reply) => {
   reply.send(currentItem);
 };
 
-// ________________________________________
+// tasks
 
 const getAllTasks = (request, reply) => {
   const { boardId: id } = request.params;
@@ -73,11 +67,6 @@ const getSingleTask = (request, reply) => {
   } else {
     reply.send(currentTask);
   }
-  // if (!currentTask) {
-  //   reply.code(404).send('Not Found');
-  // } else {
-  //   reply.send(currentTask);
-  // }
 };
 
 const addTask = (request, reply) => {
@@ -105,10 +94,8 @@ const addTask = (request, reply) => {
 };
 
 const deleteTask = (request, reply) => {
-  // const { title, description, order } = request.body;
   const { boardId: id, taskId } = request.params;
   const currentItem = items.find((item) => item.id === id);
-  // const deletedItem = currentItem.find((item) => item.id === taskId);
   if (!currentItem) {
     reply.code(404).send('Not Found');
   } else {

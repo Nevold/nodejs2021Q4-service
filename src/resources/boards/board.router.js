@@ -1,14 +1,3 @@
-// const router = require('express').Router();
-// const User = require('./user.model');
-// const usersService = require('./user.service');
-
-// router.route('/').get(async (req, res) => {
-//   const users = await usersService.getAll();
-//   // map user fields to exclude secret fields like "password"
-//   res.json(users.map(User.toResponse));
-// });
-
-// module.exports = router;
 const {
   getAllBoards,
   getSingleBoard,
@@ -16,7 +5,7 @@ const {
   deleteBoard,
   updateBoard,
 } = require('./board.service');
-// Item schema
+
 const ItemBoard = {
   type: 'object',
   properties: {
@@ -62,16 +51,6 @@ const postBoardOptions = {
   handler: addBoard,
 };
 const deleteBoardOptions = {
-  // schema: {
-  //   response: {
-  //     200: {
-  //       type: 'object',
-  //       properties: {
-  //         message: { type: 'string' },
-  //       },
-  //     },
-  //   },
-  // },
   handler: deleteBoard,
 };
 
@@ -85,15 +64,10 @@ const updateBoardOptions = {
 };
 
 function boardRouter(fastify, options, next) {
-  // Get all items
   fastify.get('/boards', getBoardsOptions);
-  // Get single item
   fastify.get('/boards/:id', getBoardOptions);
-  // create item
   fastify.post('/boards', postBoardOptions);
-  // delete item
   fastify.delete('/boards/:id', deleteBoardOptions);
-  // update
   fastify.put('/boards/:id', updateBoardOptions);
   next();
 }

@@ -1,13 +1,7 @@
-// const usersRepo = require('./user.memory.repository');
-
-// const getAll = () => usersRepo.getAll();
-
-// module.exports = { getAll };
 const { v4: uuidv4 } = require('uuid');
 let { tasksRepo: items } = require('../boards/board.service');
 
 const getAllTasks = (request, reply) => {
-  // reply.send(items);
   const { id } = request.params;
   const currentId = items.find((item) => item.id === id);
   if (!currentId) {
@@ -45,7 +39,6 @@ const deleteTask = (request, reply) => {
     items = items.filter((item) => item.id !== id);
     reply.code(200).send('Deleted');
   }
-  // reply.send(currentId);
 };
 
 const updateTask = (request, reply) => {
