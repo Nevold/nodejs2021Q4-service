@@ -61,11 +61,16 @@ const getAllTasks = (request, reply) => {
 const getSingleTask = (request, reply) => {
   const { boardId, taskId } = request.params;
   const currentItem = items.find((item) => item.id === boardId);
-  const currentTask = currentItem.columns.find((item) => item.id === taskId);
-  if (!currentTask) {
+
+  if (!currentItem) {
     reply.code(404).send('Not Found');
   } else {
-    reply.send(currentTask);
+    const currentTask = currentItem.columns.find((item) => item.id === taskId);
+    if (!currentTask) {
+      reply.code(404).send('Not Found');
+    } else {
+      reply.send(currentTask);
+    }
   }
 };
 
