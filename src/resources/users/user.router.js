@@ -1,11 +1,69 @@
-const router = require('express').Router();
-const User = require('./user.model');
-const usersService = require('./user.service');
+const {
+  getAllItems,
+  getSingleItem,
+  addSingleItem,
+  deleteSingleItem,
+  updateSingleItem,
+} = require('./user.service');
 
-router.route('/').get(async (req, res) => {
-  const users = await usersService.getAll();
-  // map user fields to exclude secret fields like "password"
-  res.json(users.map(User.toResponse));
-});
+const ItemUser = {
+  type: 'object',
+  properties: {
+    id: { type: 'string' },
+    name: { type: 'string' },
+    login: { type: 'string' },
+  },
+};
 
-module.exports = router;
+const getUsersOptions = {
+  schema: {
+    response: {
+      200: {
+        type: 'array',
+        items: ItemUser,
+      },
+    },
+  },
+  handler: getAllItems,
+};
+
+const getUserOptions = {
+  schema: {
+    response: {
+      200: ItemUser,
+    },
+  },
+  handler: getSingleItem,
+};
+
+const postUserOptions = {
+  schema: {
+    response: {
+      201: ItemUser,
+    },
+  },
+  handler: addSingleItem,
+};
+const deleteUserOptions = {
+  handler: deleteSingleItem,
+};
+
+const updateUserOptions = {
+  schema: {
+    response: {
+      200: ItemUser,
+    },
+  },
+  handler: updateSingleItem,
+};
+
+function userRouter(fastify, options, next) {
+  fastify.get('/users', getUsersOptions);
+  fastify.get('/users/:id', getUserOptions);
+  fastify.post('/users', postUserOptions);
+  fastify.delete('/users/:id', deleteUserOptions);
+  fastify.put('/users/:id', updateUserOptions);
+  next();
+}
+
+module.exports = userRouter;
