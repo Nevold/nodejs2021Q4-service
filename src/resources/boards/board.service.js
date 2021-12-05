@@ -86,12 +86,13 @@ const addTask = (request, reply) => {
   } else {
     let currentTask = currentItem.columns;
     const newTask = {
-      id,
+      id: uuidv4(),
       title,
       order,
       description,
       userId,
       columnId,
+      boardId: id,
     };
     items = items.map((elem) => {
       currentTask = [...currentTask, newTask];
