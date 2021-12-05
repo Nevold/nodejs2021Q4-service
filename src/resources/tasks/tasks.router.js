@@ -17,34 +17,34 @@ const {
   updateTask,
 } = require('../boards/board.service');
 // Item schema
-const ItemTasks = {
-  // type: 'object',
-  // properties: {
-  //   id: { type: 'string' },
-  //   title: { type: 'string' },
-  //   columns: {
-  // type: 'array',
-  // properties: {
-  //   type: 'object',
-  //   properties: {
-  //     title: { type: 'string' },
-  //     order: { type: 'number' },
-  //     id: { type: 'string' },
-  //   },
-  // },
-  //   },
-  // },
-};
+// const ItemTasks = {
+//   // type: 'object',
+//   // properties: {
+//   //   id: { type: 'string' },
+//   //   title: { type: 'string' },
+//   //   columns: {
+//   // type: 'array',
+//   // properties: {
+//   //   type: 'object',
+//   //   properties: {
+//   //     title: { type: 'string' },
+//   //     order: { type: 'number' },
+//   //     id: { type: 'string' },
+//   //   },
+//   // },
+//   //   },
+//   // },
+// };
 
 const getTasksOptions = {
-  schema: {
-    response: {
-      200: {
-        type: 'array',
-        items: ItemTasks,
-      },
-    },
-  },
+  // schema: {
+  //   response: {
+  //     200: {
+  //       type: 'array',
+  //       items: ItemTasks,
+  //     },
+  //   },
+  // },
   handler: getAllTasks,
 };
 
@@ -82,7 +82,12 @@ const deleteTaskOptions = {
 const updateTaskOptions = {
   // schema: {
   //   response: {
-  //     200: ItemTasks,
+  //     200: {
+  //       type: 'object',
+  //       properties: {
+  //         type: 'string',
+  //       },
+  //     },
   //   },
   // },
   handler: updateTask,

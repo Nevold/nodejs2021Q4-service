@@ -23,7 +23,6 @@ const getSingleBoard = (request, reply) => {
 
 const addBoard = (request, reply) => {
   const { title, columns } = request.body;
-  // columns.forEach((column) => (column.id = uuidv4()));
   for (let i = 0; i < columns.length; i += 1) {
     columns[i].id = uuidv4();
   }
@@ -67,10 +66,8 @@ const getAllTasks = (request, reply) => {
 
 const getSingleTask = (request, reply) => {
   const { boardId, taskId } = request.params;
-  const currentItem = items.filter((item) => item.id === boardId);
-  const currentTask = currentItem[0].columns.filter(
-    (item) => item.id === taskId
-  );
+  const currentItem = items.find((item) => item.id === boardId);
+  const currentTask = currentItem.columns.find((item) => item.id === taskId);
   reply.send(currentTask);
   // if (!currentTask) {
   //   reply.code(404).send('Not Found');
@@ -116,33 +113,66 @@ const deleteTask = (request, reply) => {
 };
 
 const updateTask = (request, reply) => {
-  // const { id } = request.params;
-  // const { title, columns } = request.body;
-  // items = items.map((elem) => (elem.id === id ? { id, title, columns } : elem));
-  // const currentItem = items.find((item) => item.id === id);
-  // reply.send(currentItem);
-  const { title, columnId, description, order, userId } = request.body;
-  const { boardId: id } = request.params;
-  const currentItem = items.filter((item) => item.id === id);
+  // // const { id } = request.params;
+  // // const { title, columns } = request.body;
+  // // items = items.map((elem) => (elem.id === id ? { id, title, columns } : elem));
+  // // const currentItem = items.find((item) => item.id === id);
+  // // reply.send(currentItem);
+  // const { boardId, taskId } = request.params;
+  // const currentItem = items.find((item) => item.id === boardId);
+  // const currentTask = currentItem.columns.find((item) => item.id === taskId);
 
+  // // const { title, columnId, description, order, userId } = request.body;
+  // // const { boardId: id } = request.params;
+
+  // // if (!currentItem) {
+  // //   reply.code(404).send('Not Found');
+  // // } else {
+  // //   // let currentTask = currentItem.columns;
+  // //   const newTask = {
+  // //     id: uuidv4(),
+  // //     title,
+  // //     order,
+  // //     description,
+  // //     userId,
+  // //     columnId,
+  // //     boardId: id,
+  // //   };
+  // //   // items = items.map((elem) => {
+  // //   //   currentTask = [...currentTask, newTask];
+  // //   //   return elem.id === id ? { id, title, columns: currentTask } : elem;
+  // //   // });
+  // //   // reply.send(currentTask);
+  // // }
+  // reply.send(currentTask);
+  const { title, description, order } = request.body;
+  const { boardId: id, taskId } = request.params;
+  const currentItem = items.find((item) => item.id === id);
   if (!currentItem) {
     reply.code(404).send('Not Found');
   } else {
-    let currentTask = currentItem.columns;
-    const newTask = {
-      id: uuidv4(),
-      title,
-      order,
-      description,
-      userId,
-      columnId,
-      boardId: id,
-    };
-    items = items.map((elem) => {
-      currentTask = [...currentTask, newTask];
-      return elem.id === id ? { id, title, columns: currentTask } : elem;
-    });
-    reply.send(newTask);
+    const currentTask = currentItem.columns;
+    // const newTask = {
+    //   id: uuidv4(),
+    //   title,
+    //   order,
+    //   description,
+    //   userId,
+    //   columnId,
+    //   boardId: id,
+    // };
+    const updateCurrentTask = currentTask.map((elem) =>
+      elem.id === taskId ? { ...elem, title, order, description } : elem
+    );
+    items = items.map((elem) =>
+      elem.id === id ? { id, title, columns: [...updateCurrentTask] } : elem
+    );
+    const updateItem = updateCurrentTask.find((item) => item.id === taskId);
+    // const tempCurrentItem = items.find((item) => item.id === id);
+    // const updateItem = tempCurrentItem.columns.find(
+    //   (item) => item.id === taskId
+    // );
+    reply.send(updateItem);
   }
 };
 
