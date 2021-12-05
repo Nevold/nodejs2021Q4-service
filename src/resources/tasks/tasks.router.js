@@ -18,18 +18,22 @@ const {
 } = require('../boards/board.service');
 // Item schema
 const ItemTasks = {
-  type: 'object',
-  properties: {
-    id: { type: 'string' },
-    title: { type: 'string' },
-    columns: {
-      type: 'array',
-      properties: {
-        title: { type: 'string' },
-        order: { type: 'number' },
-      },
-    },
-  },
+  // type: 'object',
+  // properties: {
+  //   id: { type: 'string' },
+  //   title: { type: 'string' },
+  //   columns: {
+  // type: 'array',
+  // properties: {
+  //   type: 'object',
+  //   properties: {
+  //     title: { type: 'string' },
+  //     order: { type: 'number' },
+  //     id: { type: 'string' },
+  //   },
+  // },
+  //   },
+  // },
 };
 
 const getTasksOptions = {

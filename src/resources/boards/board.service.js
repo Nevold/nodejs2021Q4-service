@@ -56,12 +56,12 @@ const updateBoard = (request, reply) => {
 
 const getAllTasks = (request, reply) => {
   const { boardId: id } = request.params;
-  const currentId = items.filter((item) => item.id === id);
-  if (!currentId) {
+  const currentItem = items.find((item) => item.id === id);
+  if (!currentItem) {
     reply.code(404).send('Not Found');
   } else {
-    const currentItem = items.filter((item) => item.id === id);
-    reply.send(currentItem);
+    const currentTask = currentItem.columns;
+    reply.send(currentTask);
   }
 };
 
@@ -79,16 +79,26 @@ const getSingleTask = (request, reply) => {
 
 const addTask = (request, reply) => {
   const { title, columnId, description, order, userId } = request.body;
-  const item = {
-    boardId: uuidv4(),
-    columnId,
-    description,
-    order,
-    title,
-    userId,
-  };
-  items = [...items, item];
-  reply.code(201).send(item);
+  const { boardId: id } = request.params;
+  const currentItem = items.find((item) => item.id === id);
+  if (!currentItem) {
+    reply.code(404).send('Not Found');
+  } else {
+    let currentTask = currentItem.columns;
+    const newTask = {
+      id,
+      title,
+      order,
+      description,
+      userId,
+      columnId,
+    };
+    items = items.map((elem) => {
+      currentTask = [...currentTask, newTask];
+      return elem.id === id ? { id, title, columns: currentTask } : elem;
+    });
+    reply.code(201).send(newTask);
+  }
 };
 
 const deleteTask = (request, reply) => {
