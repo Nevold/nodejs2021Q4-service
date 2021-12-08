@@ -25,7 +25,7 @@ const updateTaskOptions = {
   handler: updateTask,
 };
 
-function tasksRouter(fastify, options, next) {
+export function tasksRouter(fastify, options, next) {
   fastify.get('/boards/:boardId/tasks', getTasksOptions);
   fastify.get('/boards/:boardId/tasks/:taskId', getTaskOptions);
   fastify.post('/boards/:boardId/tasks', postTaskOptions);
@@ -34,4 +34,4 @@ function tasksRouter(fastify, options, next) {
   next();
 }
 
-module.exports = tasksRouter;
+// module.exports = tasksRouter;

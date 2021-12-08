@@ -1,10 +1,18 @@
-const {
+// const {
+//   getAllItems,
+//   getSingleItem,
+//   addSingleItem,
+//   deleteSingleItem,
+//   updateSingleItem,
+// } = require('./user.service');
+
+import {
   getAllItems,
   getSingleItem,
   addSingleItem,
   deleteSingleItem,
   updateSingleItem,
-} = require('./user.service');
+} from './user.service';
 
 const ItemUser = {
   type: 'object',
@@ -57,7 +65,7 @@ const updateUserOptions = {
   handler: updateSingleItem,
 };
 
-function userRouter(fastify, options, next) {
+export function userRouter(fastify: any, options: any, next: any) {
   fastify.get('/users', getUsersOptions);
   fastify.get('/users/:id', getUserOptions);
   fastify.post('/users', postUserOptions);
@@ -65,5 +73,3 @@ function userRouter(fastify, options, next) {
   fastify.put('/users/:id', updateUserOptions);
   next();
 }
-
-module.exports = userRouter;

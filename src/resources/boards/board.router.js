@@ -63,7 +63,7 @@ const updateBoardOptions = {
   handler: updateBoard,
 };
 
-function boardRouter(fastify, options, next) {
+export function boardRouter(fastify, options, next) {
   fastify.get('/boards', getBoardsOptions);
   fastify.get('/boards/:id', getBoardOptions);
   fastify.post('/boards', postBoardOptions);
@@ -72,4 +72,4 @@ function boardRouter(fastify, options, next) {
   next();
 }
 
-module.exports = boardRouter;
+// module.exports = boardRouter;
