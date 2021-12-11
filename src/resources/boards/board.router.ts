@@ -1,10 +1,21 @@
-const {
+import { FastifyInstance, RegisterOptions } from 'fastify';
+import { Done } from '../../app';
+
+// const {
+//   getAllBoards,
+//   getSingleBoard,
+//   addBoard,
+//   deleteBoard,
+//   updateBoard,
+// } = require('./board.service');
+
+import {
   getAllBoards,
   getSingleBoard,
   addBoard,
   deleteBoard,
   updateBoard,
-} = require('./board.service');
+} from './board.service';
 
 const ItemBoard = {
   type: 'object',
@@ -63,13 +74,17 @@ const updateBoardOptions = {
   handler: updateBoard,
 };
 
-export function boardRouter(fastify, options, next) {
+export function boardRouter(
+  fastify: FastifyInstance,
+  _: RegisterOptions,
+  done: Done
+): void {
   fastify.get('/boards', getBoardsOptions);
   fastify.get('/boards/:id', getBoardOptions);
   fastify.post('/boards', postBoardOptions);
   fastify.delete('/boards/:id', deleteBoardOptions);
   fastify.put('/boards/:id', updateBoardOptions);
-  next();
+  done();
 }
 
 // module.exports = boardRouter;
