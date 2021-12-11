@@ -1,15 +1,19 @@
-// const userRouter = require('./resources/users/user.router');
-// const boardRouter = require('./resources/boards/board.router');
-// const tasksRouter = require('./resources/tasks/tasks.router');
+import { FastifyInstance, RegisterOptions } from 'fastify';
 
 import { userRouter } from './resources/users/user.router';
 import { boardRouter } from './resources/boards/board.router';
 import { tasksRouter } from './resources/tasks/tasks.router';
 
-export function app(fastify: any, options: any, next: any) {
-  userRouter(fastify, options, next);
-  boardRouter(fastify, options, next);
-  tasksRouter(fastify, options, next);
+export type Done = () => void;
+
+export function app(
+  fastify: FastifyInstance,
+  options: RegisterOptions,
+  done: Done
+) {
+  userRouter(fastify, options, done);
+  boardRouter(fastify, options, done);
+  tasksRouter(fastify, options, done);
 }
 
 // module.exports = app;

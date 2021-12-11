@@ -1,11 +1,5 @@
-// const {
-//   getAllItems,
-//   getSingleItem,
-//   addSingleItem,
-//   deleteSingleItem,
-//   updateSingleItem,
-// } = require('./user.service');
-
+import { FastifyInstance, RegisterOptions } from 'fastify';
+import { Done } from '../../app';
 import {
   getAllItems,
   getSingleItem,
@@ -15,6 +9,7 @@ import {
 } from './user.service';
 
 const ItemUser = {
+  method: 'GET',
   type: 'object',
   properties: {
     id: { type: 'string' },
@@ -65,11 +60,15 @@ const updateUserOptions = {
   handler: updateSingleItem,
 };
 
-export function userRouter(fastify: any, options: any, next: any) {
+export function userRouter(
+  fastify: FastifyInstance,
+  _: RegisterOptions,
+  done: Done
+): void {
   fastify.get('/users', getUsersOptions);
   fastify.get('/users/:id', getUserOptions);
   fastify.post('/users', postUserOptions);
   fastify.delete('/users/:id', deleteUserOptions);
   fastify.put('/users/:id', updateUserOptions);
-  next();
+  done();
 }
