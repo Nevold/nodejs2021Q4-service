@@ -9,7 +9,6 @@ import {
 } from './user.service';
 
 const ItemUser = {
-  method: 'GET',
   type: 'object',
   properties: {
     id: { type: 'string' },

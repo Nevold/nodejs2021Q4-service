@@ -1,10 +1,3 @@
-// const {
-//   getAllTasks,
-//   getSingleTask,
-//   addTask,
-//   deleteTask,
-//   updateTask,
-// } = require('../boards/board.service');
 import { FastifyInstance, RegisterOptions } from 'fastify';
 import { Done } from '../../app';
 
@@ -14,9 +7,31 @@ import {
   addTask,
   deleteTask,
   updateTask,
-} from '../boards/board.service';
+} from './tasks.service';
+
+// const ItemTask = {
+//   type: 'object',
+//   properties: {
+//     id: { type: 'string' },
+//     title: { type: 'string' },
+//     order: { type: 'number' },
+//     description: { type: 'string' },
+//     boardId: { type: 'string' },
+//     columnId: { type: 'string' },
+//     userId: { type: 'string' },
+//   },
+// };
 
 const getTasksOptions = {
+  // method: 'GET',
+  // schema: {
+  //   response: {
+  //     200: {
+  //       type: 'array',
+  //       items: ItemTask,
+  //     },
+  //   },
+  // },
   handler: getAllTasks,
 };
 

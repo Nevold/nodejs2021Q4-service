@@ -1,58 +1,118 @@
-// const { v4: uuidv4 } = require('uuid');
-// let { tasksRepo: items } = require('../boards/board.service');
+import { FastifyReply, FastifyRequest } from 'fastify';
+import { v4 as uuidv4 } from 'uuid';
+import { items } from '../db/db';
 
-// const getAllTasks = (request, reply) => {
-//   const { id } = request.params;
-//   const currentId = items.find((item) => item.id === id);
-//   if (!currentId) {
-//     reply.code(404).send('Not Found');
-//   } else {
-//     const currentItem = items.find((item) => item.id === id);
-//     reply.send(currentItem);
-//   }
-// };
+type CustomRequestTask = FastifyRequest<{
+  Params: { boardId: string; taskId: string };
+  Body: {
+    title: string;
+    columnId: string;
+    description: string;
+    order: number;
+    userId: string;
+  };
+}>;
 
-// const getSingleTask = (request, reply) => {
-//   const { taskId: id } = request.params;
-//   const currentId = items.find((item) => item.id === id);
-//   if (!currentId) {
-//     reply.code(404).send('Not Found');
-//   } else {
-//     const currentItem = items.find((item) => item.id === id);
-//     reply.send(currentItem);
-//   }
-// };
+export const getAllTasks = (
+  request: CustomRequestTask,
+  reply: FastifyReply
+): void => {
+  const { boardId: id } = request.params;
 
-// const addTask = (request, reply) => {
-//   const { title, columns } = request.body;
-//   const item = { id: uuidv4(), title, columns };
-//   items = [...items, item];
-//   reply.code(201).send(item);
-// };
+  const currentItem = items.task?.filter((item) => item.boardId === id);
+  if (currentItem?.length === 0) {
+    reply.code(404).send('Not Found');
+  } else {
+    reply.status(200);
+    reply.send(currentItem);
+  }
+};
+export const getSingleTask = (
+  request: CustomRequestTask,
+  reply: FastifyReply
+): void => {
+  const { taskId, boardId } = request.params;
+  const currentItem = items.task?.filter(
+    (item) => item.id === taskId && item.boardId === boardId
+  )[0];
 
-// const deleteTask = (request, reply) => {
-//   const { id } = request.params;
-//   const currentId = items.find((item) => item.id === id);
-//   if (!currentId) {
-//     reply.code(404).send('Not Found');
-//   } else {
-//     items = items.filter((item) => item.id !== id);
-//     reply.code(200).send('Deleted');
-//   }
-// };
+  if (!currentItem) {
+    reply.code(404).send('Not Found');
+  } else {
+    reply.send(currentItem);
+  }
+};
 
-// const updateTask = (request, reply) => {
-//   const { id } = request.params;
-//   const { title, columns } = request.body;
-//   items = items.map((elem) => (elem.id === id ? { id, title, columns } : elem));
-//   const currentItem = items.find((item) => item.id === id);
-//   reply.send(currentItem);
-// };
+export const addTask = (
+  request: CustomRequestTask,
+  reply: FastifyReply
+): void => {
+  const { title, columnId, description, order, userId } = request.body;
+  const { boardId: id } = request.params;
+  const newTask = {
+    id: uuidv4(),
+    title,
+    order,
+    description,
+    userId,
+    boardId: id,
+    columnId,
+  };
+  if (items.task) {
+    items.task = [...items.task, newTask];
+  }
 
-// module.exports = {
-//   getAllTasks,
-//   getSingleTask,
-//   addTask,
-//   deleteTask,
-//   updateTask,
-// };
+  reply.code(201).send(newTask);
+};
+
+export const deleteTask = (
+  request: CustomRequestTask,
+  reply: FastifyReply
+): void => {
+  const { taskId } = request.params;
+
+  const currentItem = items.task?.find((item) => item.id === taskId);
+
+  if (!currentItem) {
+    reply.code(404).send('Not Found');
+  } else {
+    items.task = items.task?.filter((item) => item.id !== taskId);
+    reply.send('Deleted');
+  }
+};
+
+export const updateTask = (
+  request: CustomRequestTask,
+  reply: FastifyReply
+): void => {
+  const { title, order, description } = request.body;
+  const { taskId } = request.params;
+  const currentItem = items.task?.find((item) => item.id === taskId);
+  if (!currentItem) {
+    reply.code(404).send('Not Found');
+  } else {
+    items.task = items.task?.map((elem) =>
+      elem.id === taskId ? { ...elem, title, order, description } : elem
+    );
+    const updateItem = items.task?.find((item) => item.id === taskId);
+    reply.send(updateItem);
+  }
+};
+
+export const deleteUserDependentTask = (userId: string): void => {
+  if (items.task) {
+    for (let i = 0; i < items.task.length; i++) {
+      if (items.task[i].userId === userId) {
+        items.task[i] = { ...items.task[i], userId: null };
+      }
+    }
+  }
+};
+
+export const deleteBoardDependentTask = (boardId: string): void => {
+  if (items.task) {
+    for (let i = items.task.length - 1; i >= 0; i -= 1) {
+      if (items.task[i].boardId === boardId) items.task.splice(i, 1);
+    }
+  }
+};
