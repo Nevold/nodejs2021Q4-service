@@ -15,5 +15,3 @@ export function app(
   boardRouter(fastify, options, done);
   tasksRouter(fastify, options, done);
 }
-
-// module.exports = app;

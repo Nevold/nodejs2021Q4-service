@@ -1,11 +1,9 @@
-// const fastify = require('fastify')({ logger: true });
 import fastify, { FastifyPluginOptions } from 'fastify';
 import swagger from 'fastify-swagger';
 import { app } from './app';
+import config from './common/config';
 
 const server = fastify({ logger: true });
-
-const { PORT } = require('./common/config');
 
 server.register<FastifyPluginOptions>(swagger, {
   exposeRoute: true,
@@ -19,7 +17,7 @@ server.register(app);
 
 const start = async () => {
   try {
-    await server.listen(PORT);
+    await server.listen(config.PORT);
   } catch (err) {
     server.log.error(err);
     process.exit(1);
