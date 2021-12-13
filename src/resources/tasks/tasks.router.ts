@@ -9,44 +9,63 @@ import {
   updateTask,
 } from './tasks.service';
 
-// const ItemTask = {
-//   type: 'object',
-//   properties: {
-//     id: { type: 'string' },
-//     title: { type: 'string' },
-//     order: { type: 'number' },
-//     description: { type: 'string' },
-//     boardId: { type: 'string' },
-//     columnId: { type: 'string' },
-//     userId: { type: 'string' },
-//   },
-// };
+const ItemTask = {
+  id: { type: 'string' },
+  title: { type: 'string' },
+  order: { type: 'number' },
+  description: { type: 'string' },
+  userId: { type: ['string', 'null'] },
+  boardId: { type: ['string', 'null'] },
+  columnId: { type: ['string', 'null'] },
+};
 
 const getTasksOptions = {
-  // method: 'GET',
-  // schema: {
-  //   response: {
-  //     200: {
-  //       type: 'array',
-  //       items: ItemTask,
-  //     },
-  //   },
-  // },
+  method: 'GET',
+  schema: {
+    response: {
+      200: {
+        type: 'array',
+        items: {
+          type: 'object',
+          properties: ItemTask,
+        },
+      },
+    },
+  },
   handler: getAllTasks,
 };
 
 const getTaskOptions = {
+  method: 'GET',
+  schema: {
+    response: {
+      200: ItemTask,
+    },
+  },
   handler: getSingleTask,
 };
 
 const postTaskOptions = {
+  method: 'POST',
+  schema: {
+    response: {
+      201: ItemTask,
+    },
+  },
   handler: addTask,
 };
 const deleteTaskOptions = {
+  method: 'DELETE',
   handler: deleteTask,
 };
 
 const updateTaskOptions = {
+  method: 'PUT',
+  schema: {
+    response: {
+      200: ItemTask,
+    },
+  },
   handler: updateTask,
 };
 
@@ -62,5 +81,3 @@ export function tasksRouter(
   fastify.put('/boards/:boardId/tasks/:taskId', updateTaskOptions);
   done();
 }
-
-// module.exports = tasksRouter;

@@ -18,6 +18,7 @@ const ItemUser = {
 };
 
 const getUsersOptions = {
+  method: 'GET',
   schema: {
     response: {
       200: {
@@ -30,6 +31,7 @@ const getUsersOptions = {
 };
 
 const getUserOptions = {
+  method: 'GET',
   schema: {
     response: {
       200: ItemUser,
@@ -39,6 +41,7 @@ const getUserOptions = {
 };
 
 const postUserOptions = {
+  method: 'POST',
   schema: {
     response: {
       201: ItemUser,
@@ -47,6 +50,7 @@ const postUserOptions = {
   handler: addSingleItem,
 };
 const deleteUserOptions = {
+  method: 'DELETE',
   handler: deleteSingleItem,
 };
 

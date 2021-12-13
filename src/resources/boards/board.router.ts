@@ -1,14 +1,6 @@
 import { FastifyInstance, RegisterOptions } from 'fastify';
 import { Done } from '../../app';
 
-// const {
-//   getAllBoards,
-//   getSingleBoard,
-//   addBoard,
-//   deleteBoard,
-//   updateBoard,
-// } = require('./board.service');
-
 import {
   getAllBoards,
   getSingleBoard,
@@ -86,5 +78,3 @@ export function boardRouter(
   fastify.put('/boards/:id', updateBoardOptions);
   done();
 }
-
-// module.exports = boardRouter;

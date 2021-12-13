@@ -63,11 +63,3 @@ export const updateSingleItem = (
   const currentItem = items.user?.find((item) => item.id === id);
   reply.send(currentItem);
 };
-
-// module.exports = {
-//   getAllItems,
-//   getSingleItem,
-//   addSingleItem,
-//   deleteSingleItem,
-//   updateSingleItem,
-// };
