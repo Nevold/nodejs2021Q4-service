@@ -13,6 +13,12 @@ type CustomRequestTask = FastifyRequest<{
   };
 }>;
 
+/**
+ **
+ * Sends a response about all tasks.
+ * @param  reply - the `Response` object to be processed.
+ * @returns  Nothing is returned
+ */
 export const getAllTasks = (
   request: CustomRequestTask,
   reply: FastifyReply
@@ -27,6 +33,14 @@ export const getAllTasks = (
     reply.send(currentItem);
   }
 };
+
+/**
+ **
+ * Sends a response about specific task.
+ * @param request -the `Request` object to be processed
+ * @param  reply - the `Response` object to be processed.
+ * @returns  Nothing is returned
+ */
 export const getSingleTask = (
   request: CustomRequestTask,
   reply: FastifyReply
@@ -43,6 +57,13 @@ export const getSingleTask = (
   }
 };
 
+/**
+ **
+ * Sends a response about the added task.
+ * @param request -the `Request` object to be processed
+ * @param  reply - the `Response` object to be processed.
+ * @returns  Nothing is returned
+ */
 export const addTask = (
   request: CustomRequestTask,
   reply: FastifyReply
@@ -65,6 +86,13 @@ export const addTask = (
   reply.code(201).send(newTask);
 };
 
+/**
+ **
+ * Sends a response about the remote task.
+ * @param request -the `Request` object to be processed
+ * @param  reply - the `Response` object to be processed.
+ * @returns  Nothing is returned
+ */
 export const deleteTask = (
   request: CustomRequestTask,
   reply: FastifyReply
@@ -81,6 +109,13 @@ export const deleteTask = (
   }
 };
 
+/**
+ **
+ * Sends a response about changed task information.
+ * @param request -the `Request` object to be processed
+ * @param  reply - the `Response` object to be processed.
+ * @returns  Nothing is returned
+ */
 export const updateTask = (
   request: CustomRequestTask,
   reply: FastifyReply
@@ -99,6 +134,12 @@ export const updateTask = (
   }
 };
 
+/**
+ **
+ * Iteration over the array with the subsequent removal of the required value.
+ * @param userId -the string on which the comparison is performed
+ * @returns  Nothing is returned
+ */
 export const deleteUserDependentTask = (userId: string): void => {
   if (items.task) {
     for (let i = 0; i < items.task.length; i++) {
@@ -109,6 +150,12 @@ export const deleteUserDependentTask = (userId: string): void => {
   }
 };
 
+/**
+ **
+ * Iteration over the array with the subsequent removal of the required value.
+ * @param userId -the string on which the comparison is performed
+ * @returns  Nothing is returned
+ */
 export const deleteBoardDependentTask = (boardId: string): void => {
   if (items.task) {
     for (let i = items.task.length - 1; i >= 0; i -= 1) {

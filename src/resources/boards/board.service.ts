@@ -12,6 +12,12 @@ type CustomRequestBoard = FastifyRequest<{
   };
 }>;
 
+/**
+ **
+ * Sends a response about all boards.
+ * @param  reply - the `Response` object to be processed.
+ * @returns  Nothing is returned
+ */
 export const getAllBoards = (
   _: CustomRequestBoard,
   reply: FastifyReply
@@ -19,6 +25,13 @@ export const getAllBoards = (
   reply.send(items.board);
 };
 
+/**
+ **
+ * Sends a response about specific board.
+ * @param request -the `Request` object to be processed
+ * @param  reply - the `Response` object to be processed.
+ * @returns  Nothing is returned
+ */
 export const getSingleBoard = (
   request: CustomRequestBoard,
   reply: FastifyReply
@@ -33,6 +46,13 @@ export const getSingleBoard = (
   }
 };
 
+/**
+ **
+ * Sends a response about the added board.
+ * @param request -the `Request` object to be processed
+ * @param  reply - the `Response` object to be processed.
+ * @returns  Nothing is returned
+ */
 export const addBoard = (
   request: CustomRequestBoard,
   reply: FastifyReply
@@ -45,6 +65,13 @@ export const addBoard = (
   reply.code(201).send(item);
 };
 
+/**
+ **
+ * Sends a response about the remote board.
+ * @param request -the `Request` object to be processed
+ * @param  reply - the `Response` object to be processed.
+ * @returns  Nothing is returned
+ */
 export const deleteBoard = (
   request: CustomRequestBoard,
   reply: FastifyReply
@@ -60,6 +87,13 @@ export const deleteBoard = (
   reply.code(200).send('Deleted');
 };
 
+/**
+ **
+ * Sends a response about changed board information.
+ * @param request -the `Request` object to be processed
+ * @param  reply - the `Response` object to be processed.
+ * @returns  Nothing is returned
+ */
 export const updateBoard = (
   request: CustomRequestBoard,
   reply: FastifyReply

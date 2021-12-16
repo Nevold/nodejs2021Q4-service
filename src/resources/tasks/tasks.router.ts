@@ -69,6 +69,13 @@ const updateTaskOptions = {
   handler: updateTask,
 };
 
+/**
+ **
+ * Declare a route.
+ * @param fastify - Require the framework
+ * @param done - the function to continue with the lifecycle
+ * @returns  Nothing is returned
+ */
 export function tasksRouter(
   fastify: FastifyInstance,
   _: RegisterOptions,

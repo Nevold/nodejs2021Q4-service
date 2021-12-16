@@ -66,6 +66,13 @@ const updateBoardOptions = {
   handler: updateBoard,
 };
 
+/**
+ **
+ * Declare a route.
+ * @param fastify - Require the framework
+ * @param done - the function to continue with the lifecycle
+ * @returns  Nothing is returned
+ */
 export function boardRouter(
   fastify: FastifyInstance,
   _: RegisterOptions,

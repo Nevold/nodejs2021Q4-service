@@ -63,6 +63,13 @@ const updateUserOptions = {
   handler: updateSingleItem,
 };
 
+/**
+ **
+ * Declare a route.
+ * @param fastify - Require the framework
+ * @param done - the function to continue with the lifecycle
+ * @returns  Nothing is returned
+ */
 export function userRouter(
   fastify: FastifyInstance,
   _: RegisterOptions,

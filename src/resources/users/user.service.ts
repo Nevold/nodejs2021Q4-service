@@ -12,10 +12,31 @@ type CustomRequest = FastifyRequest<{
   };
 }>;
 
+// /**
+//  **
+//  * Send a response.
+//  * @param reply - the `Request` object to be processed.
+//  * @returns a `Response` object containing the data.
+//  */
+
+/**
+ **
+ * Sends a response about all users.
+ * @param  reply - the `Response` object to be processed.
+ * @returns  Nothing is returned
+ */
+
 export const getAllItems = (_: CustomRequest, reply: FastifyReply): void => {
   reply.send(items.user);
 };
 
+/**
+ **
+ * Sends a response about specific user.
+ * @param request -the `Request` object to be processed
+ * @param  reply - the `Response` object to be processed.
+ * @returns  Nothing is returned
+ */
 export const getSingleItem = (
   request: CustomRequest,
   reply: FastifyReply
@@ -29,6 +50,13 @@ export const getSingleItem = (
   reply.send(currentItem);
 };
 
+/**
+ **
+ * Sends a response about the added user.
+ * @param request -the `Request` object to be processed
+ * @param  reply - the `Response` object to be processed.
+ * @returns  Nothing is returned
+ */
 export const addSingleItem = (
   request: CustomRequest,
   reply: FastifyReply
@@ -41,6 +69,13 @@ export const addSingleItem = (
   }
 };
 
+/**
+ **
+ * Sends a response about the remote user.
+ * @param request -the `Request` object to be processed
+ * @param  reply - the `Response` object to be processed.
+ * @returns  Nothing is returned
+ */
 export const deleteSingleItem = (
   request: CustomRequest,
   reply: FastifyReply
@@ -51,6 +86,13 @@ export const deleteSingleItem = (
   reply.send('Deleted');
 };
 
+/**
+ **
+ * Sends a response about changed user information.
+ * @param request -the `Request` object to be processed
+ * @param  reply - the `Response` object to be processed.
+ * @returns  Nothing is returned
+ */
 export const updateSingleItem = (
   request: CustomRequest,
   reply: FastifyReply

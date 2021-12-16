@@ -6,12 +6,15 @@ import { tasksRouter } from './resources/tasks/tasks.router';
 
 export type Done = () => void;
 
-export function app(
-  fastify: FastifyInstance,
-  options: RegisterOptions,
-  done: Done
-) {
-  userRouter(fastify, options, done);
-  boardRouter(fastify, options, done);
-  tasksRouter(fastify, options, done);
+/**
+ **
+ * Declare a routes.
+ * @param fastify - Require the framework
+ * @param done - the function to continue with the lifecycle
+ * @returns  Nothing is returned
+ */
+export function app(fastify: FastifyInstance, _: RegisterOptions, done: Done) {
+  userRouter(fastify, _, done);
+  boardRouter(fastify, _, done);
+  tasksRouter(fastify, _, done);
 }
