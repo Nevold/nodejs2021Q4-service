@@ -27,7 +27,7 @@
     },
     "node": {
       "allowModules": ["electron"],
-      "resolvePaths": ["./"],
+      "resolvePaths": ["__dirname"],
       "tryExtensions": [".js", ".json", ".node", ".ts", ".cjs"]
     }
   },
