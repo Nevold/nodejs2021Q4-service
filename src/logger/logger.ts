@@ -31,27 +31,47 @@ export const logger = pino({
       {
         level: 'debug',
         target: 'pino/file',
-        options: { destination: './debug.logs.txt' },
+        options: {
+          destination: './src/logs/debug.logs.txt',
+          translateTime: 'HH:MM:ss Z',
+          ignore: 'pid,hostname',
+        },
       },
       {
         level: 'info',
         target: 'pino/file',
-        options: { destination: './info.logs.txt' },
+        options: {
+          destination: './src/logs/info.logs.txt',
+          translateTime: 'HH:MM:ss Z',
+          ignore: 'pid,hostname',
+        },
       },
       {
         level: 'warn',
         target: 'pino/file',
-        options: { destination: './warn.logs.txt' },
+        options: {
+          destination: './src/logs/warn.logs.txt',
+          translateTime: 'HH:MM:ss Z',
+          ignore: 'pid,hostname',
+        },
       },
       {
         level: 'error',
         target: 'pino/file',
-        options: { destination: './error.logs.txt' },
+        options: {
+          destination: './src/logs/error.logs.txt',
+          translateTime: 'HH:MM:ss Z',
+          ignore: 'pid,hostname',
+        },
       },
       {
         level: 'fatal',
         target: 'pino/file',
-        options: { destination: './fatal.logs.txt' },
+        options: {
+          destination: './src/logs/fatal.logs.txt',
+          translateTime: 'HH:MM:ss Z',
+          ignore: 'pid,hostname',
+        },
       },
     ],
   },
