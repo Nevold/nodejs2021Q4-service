@@ -1,33 +1,8 @@
 import fastify, { FastifyPluginOptions } from 'fastify';
-import pino from 'pino';
 import swagger from 'fastify-swagger';
 import { app } from './app';
 import config from './common/config';
-
-const logger = pino({
-  // transport: {
-  //   target: 'pino-pretty',
-  //   options: {
-  //     colorize: true,
-  //   },
-  // },
-  transport: {
-    targets: [
-      {
-        level: 'info',
-        target: 'pino-pretty',
-        options: {
-          colorize: true,
-        },
-      },
-      {
-        level: 'warn',
-        target: 'pino/file',
-        options: { destination: './logs.txt' },
-      },
-    ],
-  },
-});
+import { logger } from './logger/logger';
 
 const server = fastify({ logger });
 

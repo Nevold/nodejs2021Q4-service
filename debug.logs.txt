@@ -1,0 +1,6 @@
+{"level":30,"time":1640290409576,"pid":5720,"hostname":"DESKTOP-GMEH9MC","msg":"Server listening at http://127.0.0.1:4000"}
+{"level":30,"time":1640290443046,"pid":5720,"hostname":"DESKTOP-GMEH9MC","reqId":"req-1","req":{"method":"GET","url":"/users/17af78ee-3c30-4ec1-a849-53907e37199d","hostname":"localhost:4000","remoteAddress":"127.0.0.1","remotePort":57405},"msg":"incoming request"}
+{"level":30,"time":1640290443053,"pid":5720,"hostname":"DESKTOP-GMEH9MC","reqId":"req-1","res":{"statusCode":200},"responseTime":6.795458000153303,"msg":"request completed"}
+{"level":30,"time":1640291032587,"pid":6100,"hostname":"DESKTOP-GMEH9MC","msg":"Server listening at http://127.0.0.1:4000"}
+{"level":30,"time":1640291084148,"pid":5284,"hostname":"DESKTOP-GMEH9MC","msg":"Server listening at http://127.0.0.1:4000"}
+{"level":30,"time":1640291549034,"pid":1876,"hostname":"DESKTOP-GMEH9MC","msg":"Server listening at http://127.0.0.1:4000"}
