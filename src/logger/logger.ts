@@ -33,8 +33,6 @@ export const logger = pino({
         target: 'pino/file',
         options: {
           destination: './src/logs/debug.logs.txt',
-          translateTime: 'HH:MM:ss Z',
-          ignore: 'pid,hostname',
         },
       },
       {
@@ -42,8 +40,6 @@ export const logger = pino({
         target: 'pino/file',
         options: {
           destination: './src/logs/info.logs.txt',
-          translateTime: 'HH:MM:ss Z',
-          ignore: 'pid,hostname',
         },
       },
       {
@@ -51,8 +47,6 @@ export const logger = pino({
         target: 'pino/file',
         options: {
           destination: './src/logs/warn.logs.txt',
-          translateTime: 'HH:MM:ss Z',
-          ignore: 'pid,hostname',
         },
       },
       {
@@ -60,8 +54,6 @@ export const logger = pino({
         target: 'pino/file',
         options: {
           destination: './src/logs/error.logs.txt',
-          translateTime: 'HH:MM:ss Z',
-          ignore: 'pid,hostname',
         },
       },
       {
@@ -69,8 +61,6 @@ export const logger = pino({
         target: 'pino/file',
         options: {
           destination: './src/logs/fatal.logs.txt',
-          translateTime: 'HH:MM:ss Z',
-          ignore: 'pid,hostname',
         },
       },
     ],
