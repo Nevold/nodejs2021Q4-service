@@ -32,37 +32,47 @@ export const logger = pino({
         level: 'debug',
         target: 'pino/file',
         options: {
-          destination: './src/logs/debug.logs.txt',
+          destination: './src/logs/debug.logs.log',
         },
       },
       {
         level: 'info',
         target: 'pino/file',
         options: {
-          destination: './src/logs/info.logs.txt',
+          destination: './src/logs/info.logs.log',
         },
       },
       {
         level: 'warn',
         target: 'pino/file',
         options: {
-          destination: './src/logs/warn.logs.txt',
+          destination: './src/logs/warn.logs.log',
         },
       },
       {
         level: 'error',
         target: 'pino/file',
         options: {
-          destination: './src/logs/error.logs.txt',
+          destination: './src/logs/error.logs.log',
         },
       },
       {
         level: 'fatal',
         target: 'pino/file',
         options: {
-          destination: './src/logs/fatal.logs.txt',
+          destination: './src/logs/fatal.logs.log',
         },
       },
     ],
+  },
+  serializers: {
+    req(request) {
+      return {
+        method: request.method,
+        url: request.url,
+        path: request.routerPath,
+        parameters: request.params,
+      };
+    },
   },
 });

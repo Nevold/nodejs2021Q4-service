@@ -1,4 +1,9 @@
-import fastify, { FastifyPluginOptions } from 'fastify';
+import fastify, {
+  FastifyPluginOptions,
+  FastifyReply,
+  FastifyRequest,
+  HookHandlerDoneFunction,
+} from 'fastify';
 import swagger from 'fastify-swagger';
 import { app } from './app';
 import config from './common/config';
@@ -6,10 +11,10 @@ import { logger } from './logger/logger';
 
 const server = fastify({ logger });
 
-const handlerError = (error: unknown): void => {
-  server.log.error(error);
-  process.exit(1);
-};
+// const handlerError = (error: unknown): void => {
+//   server.log.error(error);
+//   process.exit(1);
+// };
 
 server.register<FastifyPluginOptions>(swagger, {
   exposeRoute: true,
@@ -19,6 +24,16 @@ server.register<FastifyPluginOptions>(swagger, {
   },
 });
 
+server.addHook(
+  'preHandler',
+  (req: FastifyRequest, _: FastifyReply, done: HookHandlerDoneFunction) => {
+    if (req.body) {
+      req.log.info({ body: req.body }, 'parsed body');
+    }
+    done();
+  }
+);
+
 server.register(app);
 
 const start = async () => {
@@ -27,9 +42,9 @@ const start = async () => {
 
     // throw Error('Oops!');
   } catch (err) {
-    // server.log.error(err);
-    // process.exit(1);
-    handlerError(err);
+    server.log.error(err);
+    process.exit(1);
+    // handlerError(err);
   }
 };
 start();
