@@ -8,13 +8,22 @@ import swagger from 'fastify-swagger';
 import { app } from './app';
 import config from './common/config';
 import { logger } from './logger/logger';
+import { level } from './logger/logger-level';
 
+logger.level = level;
 const server = fastify({ logger });
 
-// const handlerError = (error: unknown): void => {
-//   server.log.error(error);
-//   process.exit(1);
-// };
+process.on('uncaughtException', (err: Error) => {
+  // eslint-disable-next-line no-console
+  console.log(err.message);
+  process.exit(1);
+});
+
+process.on('unhandledRejection', (err: Error) => {
+  // eslint-disable-next-line no-console
+  console.log(err.message);
+  process.exit(1);
+});
 
 server.register<FastifyPluginOptions>(swagger, {
   exposeRoute: true,
@@ -40,19 +49,12 @@ server.addHook(
 
 server.register(app);
 
-// process.on('unhandledRejection', (err) => {
-//   console.log(err);
-// });
-
 const start = async () => {
   try {
     await server.listen(config.PORT);
-
-    // throw Error('Oops!');
   } catch (err) {
     server.log.error(err);
     process.exit(1);
-    // handlerError(err);
   }
 };
 start();

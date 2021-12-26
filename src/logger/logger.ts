@@ -1,6 +1,5 @@
 import { FastifyRequest } from 'fastify';
 import pino from 'pino';
-import { level } from './logger-level';
 
 export const logger = pino({
   transport: {
@@ -10,16 +9,6 @@ export const logger = pino({
         target: 'pino-pretty',
         options: {
           colorize: true,
-          translateTime: 'HH:MM:ss Z',
-          ignore: 'pid,hostname',
-        },
-      },
-      {
-        level: 'debug',
-        target: 'pino-pretty',
-        options: {
-          destination: './src/logs/debug.logs.log',
-          colorize: false,
           translateTime: 'HH:MM:ss Z',
           ignore: 'pid,hostname',
         },
@@ -67,11 +56,3 @@ export const logger = pino({
     },
   },
 });
-
-// logger.on('level-change', (lvl, val, prevLvl, prevVal) => {
-//   // if (logger !== this) {
-//   //   return;
-//   // }
-//   console.log('%s (%d) was changed to %s (%d)', prevLvl, prevVal, lvl, val);
-// });
-logger.level = level;
