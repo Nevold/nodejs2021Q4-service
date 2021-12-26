@@ -1,1 +1,42 @@
-{"level":40,"time":1640463805144,"pid":10628,"hostname":"DESKTOP-GMEH9MC","reqId":"req-3","err":{"type":"FastifyError","message":"Reply was already sent.","stack":"FastifyError: Reply was already sent.\n    at _Reply.Reply.send (D:\\Nodejs2021Q4-service\\nodejs2021Q4-service\\node_modules\\fastify\\lib\\reply.js:124:26)\n    at Object.getSingleItem (D:\\Nodejs2021Q4-service\\nodejs2021Q4-service\\src\\resources\\users\\user.service.ts:50:9)\n    at preHandlerCallback (D:\\Nodejs2021Q4-service\\nodejs2021Q4-service\\node_modules\\fastify\\lib\\handleRequest.js:126:28)\n    at next (D:\\Nodejs2021Q4-service\\nodejs2021Q4-service\\node_modules\\fastify\\lib\\hooks.js:158:7)\n    at Object.<anonymous> (D:\\Nodejs2021Q4-service\\nodejs2021Q4-service\\src\\server.ts:33:5)\n    at hookIterator (D:\\Nodejs2021Q4-service\\nodejs2021Q4-service\\node_modules\\fastify\\lib\\hooks.js:237:10)\n    at next (D:\\Nodejs2021Q4-service\\nodejs2021Q4-service\\node_modules\\fastify\\lib\\hooks.js:164:16)\n    at hookRunner (D:\\Nodejs2021Q4-service\\nodejs2021Q4-service\\node_modules\\fastify\\lib\\hooks.js:187:3)\n    at preValidationCallback (D:\\Nodejs2021Q4-service\\nodejs2021Q4-service\\node_modules\\fastify\\lib\\handleRequest.js:101:5)\n    at handler (D:\\Nodejs2021Q4-service\\nodejs2021Q4-service\\node_modules\\fastify\\lib\\handleRequest.js:72:7)","name":"FastifyError","code":"FST_ERR_REP_ALREADY_SENT","statusCode":500},"msg":"Reply already sent"}
+[14:39:13 UTC] WARN: Reply already sent
+    reqId: "req-1"
+    err: {
+      "type": "FastifyError",
+      "message": "Reply was already sent.",
+      "stack":
+          FastifyError: Reply was already sent.
+              at _Reply.Reply.send (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\reply.js:124:26)
+              at Object.getSingleItem (D:\Nodejs2021Q4-service\nodejs2021Q4-service\src\resources\users\user.service.ts:50:9)
+              at preHandlerCallback (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\handleRequest.js:126:28)
+              at next (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\hooks.js:158:7)
+              at Object.<anonymous> (D:\Nodejs2021Q4-service\nodejs2021Q4-service\src\server.ts:37:5)
+              at hookIterator (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\hooks.js:237:10)
+              at next (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\hooks.js:164:16)
+              at hookRunner (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\hooks.js:187:3)
+              at preValidationCallback (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\handleRequest.js:101:5)
+              at handler (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\handleRequest.js:72:7)
+      "name": "FastifyError",
+      "code": "FST_ERR_REP_ALREADY_SENT",
+      "statusCode": 500
+    }
+[14:40:53 UTC] WARN: Reply already sent
+    reqId: "req-1"
+    err: {
+      "type": "FastifyError",
+      "message": "Reply was already sent.",
+      "stack":
+          FastifyError: Reply was already sent.
+              at _Reply.Reply.send (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\reply.js:124:26)
+              at Object.getSingleItem (D:\Nodejs2021Q4-service\nodejs2021Q4-service\src\resources\users\user.service.ts:50:9)
+              at preHandlerCallback (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\handleRequest.js:126:28)
+              at next (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\hooks.js:158:7)
+              at Object.<anonymous> (D:\Nodejs2021Q4-service\nodejs2021Q4-service\src\server.ts:37:5)
+              at hookIterator (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\hooks.js:237:10)
+              at next (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\hooks.js:164:16)
+              at hookRunner (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\hooks.js:187:3)
+              at preValidationCallback (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\handleRequest.js:101:5)
+              at handler (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\handleRequest.js:72:7)
+      "name": "FastifyError",
+      "code": "FST_ERR_REP_ALREADY_SENT",
+      "statusCode": 500
+    }

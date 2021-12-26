@@ -1,45 +1,100 @@
-{"level":30,"time":1640461342073,"pid":10108,"hostname":"DESKTOP-GMEH9MC","msg":"Server listening at http://127.0.0.1:4000"}
-{"level":30,"time":1640461349950,"pid":10108,"hostname":"DESKTOP-GMEH9MC","reqId":"req-1","req":{"method":"GET","url":"/users","path":"/users","parameters":{},"headers":null},"msg":"incoming request"}
-{"level":30,"time":1640461349972,"pid":10108,"hostname":"DESKTOP-GMEH9MC","reqId":"req-1","res":{"statusCode":200},"responseTime":19.975215000100434,"msg":"request completed"}
-{"level":30,"time":1640461369002,"pid":10108,"hostname":"DESKTOP-GMEH9MC","reqId":"req-2","req":{"method":"GET","url":"/users","path":"/users","parameters":{},"headers":null},"msg":"incoming request"}
-{"level":30,"time":1640461369003,"pid":10108,"hostname":"DESKTOP-GMEH9MC","reqId":"req-2","res":{"statusCode":200},"responseTime":0.4864990001078695,"msg":"request completed"}
-{"level":30,"time":1640462091979,"pid":10236,"hostname":"DESKTOP-GMEH9MC","msg":"Server listening at http://127.0.0.1:4000"}
-{"level":30,"time":1640462096894,"pid":10236,"hostname":"DESKTOP-GMEH9MC","reqId":"req-1","req":{"method":"GET","url":"/users","path":"/users","parameters":{},"headers":null},"msg":"incoming request"}
-{"level":30,"time":1640462096914,"pid":10236,"hostname":"DESKTOP-GMEH9MC","reqId":"req-1","res":{"statusCode":200},"responseTime":18.94298000028357,"msg":"request completed"}
-{"level":30,"time":1640462170537,"pid":6540,"hostname":"DESKTOP-GMEH9MC","msg":"Server listening at http://127.0.0.1:4000"}
-{"level":30,"time":1640462261595,"pid":9948,"hostname":"DESKTOP-GMEH9MC","msg":"Server listening at http://127.0.0.1:4000"}
-{"level":30,"time":1640462263602,"pid":9948,"hostname":"DESKTOP-GMEH9MC","reqId":"req-1","req":{"method":"GET","url":"/users","path":"/users","parameters":{},"headers":{"content-type":"application/json","user-agent":"PostmanRuntime/7.28.4","accept":"*/*","postman-token":"1d5c5289-0534-4477-87d6-a0cafaf31d67","host":"localhost:4000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"61"}},"msg":"incoming request"}
-{"level":30,"time":1640462263612,"pid":9948,"hostname":"DESKTOP-GMEH9MC","reqId":"req-1","res":{"statusCode":200},"responseTime":9.495389999821782,"msg":"request completed"}
-{"level":30,"time":1640462677150,"pid":9572,"hostname":"DESKTOP-GMEH9MC","msg":"Server listening at http://127.0.0.1:4000"}
-{"level":30,"time":1640462704702,"pid":6408,"hostname":"DESKTOP-GMEH9MC","msg":"Server listening at http://127.0.0.1:4000"}
-{"level":30,"time":1640463019710,"pid":7956,"hostname":"DESKTOP-GMEH9MC","msg":"Server listening at http://127.0.0.1:4000"}
-{"level":30,"time":1640463024289,"pid":7956,"hostname":"DESKTOP-GMEH9MC","reqId":"req-1","req":{"method":"GET","url":"/users","path":"/users","parameters":{},"headers":{"content-type":"application/json","user-agent":"PostmanRuntime/7.28.4","accept":"*/*","postman-token":"284e4188-3414-4d47-9ea4-c78fbc1d68f7","host":"localhost:4000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"61"}},"msg":"incoming request"}
-{"level":30,"time":1640463024305,"pid":7956,"hostname":"DESKTOP-GMEH9MC","reqId":"req-1","res":{"statusCode":200},"responseTime":14.602314000017941,"msg":"request completed"}
-{"level":30,"time":1640463051093,"pid":7956,"hostname":"DESKTOP-GMEH9MC","reqId":"req-2","req":{"method":"POST","url":"/users","path":"/users","parameters":{},"headers":{"content-type":"application/json","user-agent":"PostmanRuntime/7.28.4","accept":"*/*","postman-token":"d2135160-883a-4620-aacd-ce14c4b71386","host":"localhost:4000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"61"}},"msg":"incoming request"}
-{"level":30,"time":1640463051094,"pid":7956,"hostname":"DESKTOP-GMEH9MC","reqId":"req-2","body":{"name":"TEST_USER11111","login":"test_user"},"msg":"parsed body"}
-{"level":30,"time":1640463051096,"pid":7956,"hostname":"DESKTOP-GMEH9MC","reqId":"req-2","res":{"statusCode":201},"responseTime":3.0181139996275306,"msg":"request completed"}
-{"level":30,"time":1640463163197,"pid":8740,"hostname":"DESKTOP-GMEH9MC","msg":"Server listening at http://127.0.0.1:4000"}
-{"level":30,"time":1640463254521,"pid":8916,"hostname":"DESKTOP-GMEH9MC","msg":"Server listening at http://127.0.0.1:4000"}
-{"level":30,"time":1640463271318,"pid":8916,"hostname":"DESKTOP-GMEH9MC","reqId":"req-1","req":{"method":"POST","url":"/users","path":"/users","parameters":{}},"msg":"incoming request"}
-{"level":30,"time":1640463271322,"pid":8916,"hostname":"DESKTOP-GMEH9MC","reqId":"req-1","body":{"name":"TEST_USER111111","login":"test_user"},"msg":"parsed body"}
-{"level":30,"time":1640463271330,"pid":8916,"hostname":"DESKTOP-GMEH9MC","reqId":"req-1","res":{"statusCode":201},"responseTime":11.062217000406235,"msg":"request completed"}
-{"level":30,"time":1640463658611,"pid":8916,"hostname":"DESKTOP-GMEH9MC","reqId":"req-2","req":{"method":"PUT","url":"/users/69f08bba-55b9-4e55-b3df-e6036cb12774","path":"/users/:id","parameters":{"id":"69f08bba-55b9-4e55-b3df-e6036cb12774"}},"msg":"incoming request"}
-{"level":30,"time":1640463658615,"pid":8916,"hostname":"DESKTOP-GMEH9MC","reqId":"req-2","body":{"name":"TEST_u","login":"test_user"},"msg":"parsed body"}
-{"level":30,"time":1640463658620,"pid":8916,"hostname":"DESKTOP-GMEH9MC","reqId":"req-2","res":{"statusCode":200},"responseTime":8.174305000342429,"msg":"request completed"}
-{"level":30,"time":1640463780748,"pid":10628,"hostname":"DESKTOP-GMEH9MC","msg":"Server listening at http://127.0.0.1:4000"}
-{"level":30,"time":1640463790204,"pid":10628,"hostname":"DESKTOP-GMEH9MC","reqId":"req-1","req":{"method":"PUT","url":"/users/69f08bba-55b9-4e55-b3df-e6036cb12774","path":"/users/:id","parameters":{"id":"69f08bba-55b9-4e55-b3df-e6036cb12774"}},"msg":"incoming request"}
-{"level":30,"time":1640463790207,"pid":10628,"hostname":"DESKTOP-GMEH9MC","reqId":"req-1","body":{"name":"TEST_uf","login":"test_user"},"msg":"parsed body"}
-{"level":30,"time":1640463790213,"pid":10628,"hostname":"DESKTOP-GMEH9MC","reqId":"req-1","res":{"statusCode":200},"responseTime":8.775171000510454,"msg":"request completed"}
-{"level":30,"time":1640463801834,"pid":10628,"hostname":"DESKTOP-GMEH9MC","reqId":"req-2","req":{"method":"PUT","url":"/users/69f08bba-55b9-4e55-b3df-e6036cb12774","path":"/users/:id","parameters":{"id":"69f08bba-55b9-4e55-b3df-e6036cb12774"}},"msg":"incoming request"}
-{"level":30,"time":1640463801837,"pid":10628,"hostname":"DESKTOP-GMEH9MC","reqId":"req-2","body":{"name":"TEST_uf","login":"test_user"},"msg":"parsed body"}
-{"level":30,"time":1640463801839,"pid":10628,"hostname":"DESKTOP-GMEH9MC","reqId":"req-2","res":{"statusCode":200},"responseTime":4.768807999789715,"msg":"request completed"}
-{"level":30,"time":1640463805143,"pid":10628,"hostname":"DESKTOP-GMEH9MC","reqId":"req-3","req":{"method":"GET","url":"/users/69f08bba-55b9-4e55-b3df-e6036cb12774","path":"/users/:id","parameters":{"id":"69f08bba-55b9-4e55-b3df-e6036cb12774"}},"msg":"incoming request"}
-{"level":40,"time":1640463805144,"pid":10628,"hostname":"DESKTOP-GMEH9MC","reqId":"req-3","err":{"type":"FastifyError","message":"Reply was already sent.","stack":"FastifyError: Reply was already sent.\n    at _Reply.Reply.send (D:\\Nodejs2021Q4-service\\nodejs2021Q4-service\\node_modules\\fastify\\lib\\reply.js:124:26)\n    at Object.getSingleItem (D:\\Nodejs2021Q4-service\\nodejs2021Q4-service\\src\\resources\\users\\user.service.ts:50:9)\n    at preHandlerCallback (D:\\Nodejs2021Q4-service\\nodejs2021Q4-service\\node_modules\\fastify\\lib\\handleRequest.js:126:28)\n    at next (D:\\Nodejs2021Q4-service\\nodejs2021Q4-service\\node_modules\\fastify\\lib\\hooks.js:158:7)\n    at Object.<anonymous> (D:\\Nodejs2021Q4-service\\nodejs2021Q4-service\\src\\server.ts:33:5)\n    at hookIterator (D:\\Nodejs2021Q4-service\\nodejs2021Q4-service\\node_modules\\fastify\\lib\\hooks.js:237:10)\n    at next (D:\\Nodejs2021Q4-service\\nodejs2021Q4-service\\node_modules\\fastify\\lib\\hooks.js:164:16)\n    at hookRunner (D:\\Nodejs2021Q4-service\\nodejs2021Q4-service\\node_modules\\fastify\\lib\\hooks.js:187:3)\n    at preValidationCallback (D:\\Nodejs2021Q4-service\\nodejs2021Q4-service\\node_modules\\fastify\\lib\\handleRequest.js:101:5)\n    at handler (D:\\Nodejs2021Q4-service\\nodejs2021Q4-service\\node_modules\\fastify\\lib\\handleRequest.js:72:7)","name":"FastifyError","code":"FST_ERR_REP_ALREADY_SENT","statusCode":500},"msg":"Reply already sent"}
-{"level":30,"time":1640463805195,"pid":10628,"hostname":"DESKTOP-GMEH9MC","reqId":"req-3","res":{"statusCode":404},"responseTime":51.1243740003556,"msg":"request completed"}
-{"level":30,"time":1640463850010,"pid":10628,"hostname":"DESKTOP-GMEH9MC","reqId":"req-4","req":{"method":"GET","url":"/users","path":"/users","parameters":{}},"msg":"incoming request"}
-{"level":30,"time":1640463850011,"pid":10628,"hostname":"DESKTOP-GMEH9MC","reqId":"req-4","res":{"statusCode":200},"responseTime":0.863617000170052,"msg":"request completed"}
-{"level":30,"time":1640463860025,"pid":10628,"hostname":"DESKTOP-GMEH9MC","reqId":"req-5","req":{"method":"GET","url":"/users/17af78ee-3c30-4ec1-a849-53907e37199d","path":"/users/:id","parameters":{"id":"17af78ee-3c30-4ec1-a849-53907e37199d"}},"msg":"incoming request"}
-{"level":30,"time":1640463860026,"pid":10628,"hostname":"DESKTOP-GMEH9MC","reqId":"req-5","res":{"statusCode":200},"responseTime":0.7996889995411038,"msg":"request completed"}
-{"level":30,"time":1640463865827,"pid":10628,"hostname":"DESKTOP-GMEH9MC","reqId":"req-6","req":{"method":"PUT","url":"/users/17af78ee-3c30-4ec1-a849-53907e37199d","path":"/users/:id","parameters":{"id":"17af78ee-3c30-4ec1-a849-53907e37199d"}},"msg":"incoming request"}
-{"level":30,"time":1640463865828,"pid":10628,"hostname":"DESKTOP-GMEH9MC","reqId":"req-6","body":{"name":"TEST_uf","login":"test_user"},"msg":"parsed body"}
-{"level":30,"time":1640463865828,"pid":10628,"hostname":"DESKTOP-GMEH9MC","reqId":"req-6","res":{"statusCode":200},"responseTime":1.1773929996415973,"msg":"request completed"}
+{"level":30,"time":1640529304937,"pid":10976,"hostname":"DESKTOP-GMEH9MC","msg":"Server listening at http://127.0.0.1:4000"}
+{"level":30,"time":1640529314719,"pid":1888,"hostname":"DESKTOP-GMEH9MC","msg":"Server listening at http://127.0.0.1:4000"}
+[14:35:34 UTC] INFO: Server listening at http://127.0.0.1:4000
+[14:35:45 UTC] INFO: incoming request
+    reqId: "req-1"
+    req: {
+      "method": "GET",
+      "url": "/?users=123&name=ali",
+      "parameters": {},
+      "queryParams": {
+        "users": "123",
+        "name": "ali"
+      }
+    }
+[14:35:45 UTC] INFO: Route GET:/?users=123&name=ali not found
+    reqId: "req-1"
+[14:35:45 UTC] INFO: request completed
+    reqId: "req-1"
+    res: {
+      "statusCode": 404
+    }
+    responseTime: 12.223795998841524
+[14:37:16 UTC] INFO: Server listening at http://127.0.0.1:4000
+[14:38:58 UTC] INFO: Server listening at http://127.0.0.1:4000
+[14:39:13 UTC] INFO: incoming request
+    reqId: "req-1"
+    req: {
+      "method": "GET",
+      "url": "/users/17af78ee-3c30-4ec1-a849-53907e37199d1",
+      "parameters": {
+        "id": "17af78ee-3c30-4ec1-a849-53907e37199d1"
+      },
+      "queryParams": {}
+    }
+[14:39:13 UTC] WARN: Reply already sent
+    reqId: "req-1"
+    err: {
+      "type": "FastifyError",
+      "message": "Reply was already sent.",
+      "stack":
+          FastifyError: Reply was already sent.
+              at _Reply.Reply.send (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\reply.js:124:26)
+              at Object.getSingleItem (D:\Nodejs2021Q4-service\nodejs2021Q4-service\src\resources\users\user.service.ts:50:9)
+              at preHandlerCallback (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\handleRequest.js:126:28)
+              at next (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\hooks.js:158:7)
+              at Object.<anonymous> (D:\Nodejs2021Q4-service\nodejs2021Q4-service\src\server.ts:37:5)
+              at hookIterator (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\hooks.js:237:10)
+              at next (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\hooks.js:164:16)
+              at hookRunner (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\hooks.js:187:3)
+              at preValidationCallback (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\handleRequest.js:101:5)
+              at handler (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\handleRequest.js:72:7)
+      "name": "FastifyError",
+      "code": "FST_ERR_REP_ALREADY_SENT",
+      "statusCode": 500
+    }
+[14:39:13 UTC] INFO: request completed
+    reqId: "req-1"
+    res: {
+      "statusCode": 404
+    }
+    responseTime: 66.7282490003854
+[14:40:48 UTC] INFO: Server listening at http://127.0.0.1:4000
+[14:40:53 UTC] INFO: incoming request
+    reqId: "req-1"
+    req: {
+      "method": "GET",
+      "url": "/users/17af78ee-3c30-4ec1-a849-53907e37199d1",
+      "parameters": {
+        "id": "17af78ee-3c30-4ec1-a849-53907e37199d1"
+      },
+      "queryParams": {}
+    }
+[14:40:53 UTC] WARN: Reply already sent
+    reqId: "req-1"
+    err: {
+      "type": "FastifyError",
+      "message": "Reply was already sent.",
+      "stack":
+          FastifyError: Reply was already sent.
+              at _Reply.Reply.send (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\reply.js:124:26)
+              at Object.getSingleItem (D:\Nodejs2021Q4-service\nodejs2021Q4-service\src\resources\users\user.service.ts:50:9)
+              at preHandlerCallback (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\handleRequest.js:126:28)
+              at next (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\hooks.js:158:7)
+              at Object.<anonymous> (D:\Nodejs2021Q4-service\nodejs2021Q4-service\src\server.ts:37:5)
+              at hookIterator (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\hooks.js:237:10)
+              at next (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\hooks.js:164:16)
+              at hookRunner (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\hooks.js:187:3)
+              at preValidationCallback (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\handleRequest.js:101:5)
+              at handler (D:\Nodejs2021Q4-service\nodejs2021Q4-service\node_modules\fastify\lib\handleRequest.js:72:7)
+      "name": "FastifyError",
+      "code": "FST_ERR_REP_ALREADY_SENT",
+      "statusCode": 500
+    }
+[14:40:53 UTC] INFO: request completed
+    reqId: "req-1"
+    res: {
+      "statusCode": 200
+    }
+    responseTime: 32.306081999093294
+[14:41:10 UTC] INFO: Server listening at http://127.0.0.1:4000

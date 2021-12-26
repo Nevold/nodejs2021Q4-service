@@ -1,20 +1,6 @@
+import { FastifyRequest } from 'fastify';
 import pino from 'pino';
-// import pretty from'pino-pretty'
-// import fs from 'fs';
-
-// const streams = [
-//     {stream: fs.createWriteStream('/tmp/info.stream.out')},
-//     {level: 'debug', stream: fs.createWriteStream('/tmp/debug.stream.out')},
-//     {level: 'fatal', stream: fs.createWriteStream('/tmp/fatal.stream.out')}
-//   ]
-// type CustomRequest = FastifyRequest<{
-//   Params: { id: string };
-//   Body: {
-//     name: string;
-//     login: string;
-//     password: string;
-//   };
-// }>;
+import { level } from './logger-level';
 
 export const logger = pino({
   transport: {
@@ -30,49 +16,62 @@ export const logger = pino({
       },
       {
         level: 'debug',
-        target: 'pino/file',
+        target: 'pino-pretty',
         options: {
           destination: './src/logs/debug.logs.log',
+          colorize: false,
+          translateTime: 'HH:MM:ss Z',
+          ignore: 'pid,hostname',
         },
       },
       {
         level: 'info',
-        target: 'pino/file',
+        target: 'pino-pretty',
         options: {
           destination: './src/logs/info.logs.log',
+          colorize: false,
+          translateTime: 'HH:MM:ss Z',
+          ignore: 'pid,hostname',
         },
       },
       {
         level: 'warn',
-        target: 'pino/file',
+        target: 'pino-pretty',
         options: {
           destination: './src/logs/warn.logs.log',
+          colorize: false,
+          translateTime: 'HH:MM:ss Z',
+          ignore: 'pid,hostname',
         },
       },
       {
         level: 'error',
-        target: 'pino/file',
+        target: 'pino-pretty',
         options: {
           destination: './src/logs/error.logs.log',
-        },
-      },
-      {
-        level: 'fatal',
-        target: 'pino/file',
-        options: {
-          destination: './src/logs/fatal.logs.log',
+          colorize: false,
+          translateTime: 'HH:MM:ss Z',
+          ignore: 'pid,hostname',
         },
       },
     ],
   },
   serializers: {
-    req(request) {
+    req(request: FastifyRequest) {
       return {
         method: request.method,
         url: request.url,
-        path: request.routerPath,
         parameters: request.params,
+        queryParams: request.query,
       };
     },
   },
 });
+
+// logger.on('level-change', (lvl, val, prevLvl, prevVal) => {
+//   // if (logger !== this) {
+//   //   return;
+//   // }
+//   console.log('%s (%d) was changed to %s (%d)', prevLvl, prevVal, lvl, val);
+// });
+logger.level = level;

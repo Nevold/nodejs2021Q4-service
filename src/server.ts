@@ -26,7 +26,11 @@ server.register<FastifyPluginOptions>(swagger, {
 
 server.addHook(
   'preHandler',
-  (req: FastifyRequest, _: FastifyReply, done: HookHandlerDoneFunction) => {
+  (
+    req: FastifyRequest,
+    _: FastifyReply,
+    done: HookHandlerDoneFunction
+  ): void => {
     if (req.body) {
       req.log.info({ body: req.body }, 'parsed body');
     }
@@ -35,6 +39,10 @@ server.addHook(
 );
 
 server.register(app);
+
+// process.on('unhandledRejection', (err) => {
+//   console.log(err);
+// });
 
 const start = async () => {
   try {
