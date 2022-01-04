@@ -9,8 +9,8 @@
   "description": "REST service starter for RS School",
   "main": "src/server.js",
   "scripts": {
-    "start": "ts-node src/server.ts",
-    "start:another": "nodemon --exec npx ts-node src/server.ts",
+    "start:another": "ts-node src/server.ts",
+    "start": "nodemon --exec npx ts-node src/server.ts",
     "lint": "eslint --ext .js,.ts --fix src/",
     "test": "cross-env DEBUG=rs:* jest --testMatch \"<rootDir>/test/e2e/test/*.test.js\" --noStackTrace --runInBand",
     "test:auth": "cross-env DEBUG=rs:* TEST_MODE=auth jest --noStackTrace"
@@ -48,13 +48,11 @@
     "@microsoft/tsdoc": "^0.13.2",
     "cross-env": "7.0.3",
     "dotenv": "10.0.0",
-    "express": "4.17.1",
     "fastify": "^3.24.1",
     "fastify-cli": "^2.14.0",
     "fastify-plugin": "^3.0.0",
     "fastify-swagger": "^4.12.6",
     "pino": "^7.6.0",
-    "swagger-ui-express": "4.1.6",
     "uuid": "8.3.2",
     "yamljs": "0.3.0"
   },

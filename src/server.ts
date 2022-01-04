@@ -51,7 +51,10 @@ server.register(app);
 
 const start = async () => {
   try {
-    await server.listen(config.PORT);
+    await server.listen(
+      config.PORT,
+      config.HTTP_ADDRESS || config.HTTP_ADDRESS_DEFAULT
+    );
   } catch (err) {
     server.log.error(err);
     process.exit(1);
