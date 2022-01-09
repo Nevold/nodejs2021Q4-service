@@ -20,7 +20,7 @@ services:
     command: npm run start
   postgres:
     restart: always
-    image: 'postgres:9.6.24-alpine3.15'
+    build: ./postgres
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
