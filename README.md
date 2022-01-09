@@ -77,4 +77,4 @@ Downloading: <kbd>git clone {repository URL}</kbd>
 
 Installing NPM modules: <kbd>npm install</kbd>
 
-Running application: <kbd>docker-compose up <kbd> or <kbd>docker-compose up --build<kbd>
+Running application: <kbd>docker-compose up </kbd> or <kbd>docker-compose up --build</kbd>
