@@ -9,4 +9,4 @@ RUN npm install && npm audit fix && npm cache clean --force
 
 COPY . .
 
-CMD  ["npm","run", "start:another"]
+CMD  ["npm","run", "start:docker"]
