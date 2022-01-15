@@ -13,8 +13,12 @@ export type Done = () => void;
  * @param done - the function to continue with the lifecycle
  * @returns  Nothing is returned
  */
-export function app(fastify: FastifyInstance, _: RegisterOptions, done: Done) {
-  userRouter(fastify, _, done);
-  boardRouter(fastify, _, done);
-  tasksRouter(fastify, _, done);
+export async function app(
+  fastify: FastifyInstance,
+  _: RegisterOptions,
+  done: Done
+) {
+  await userRouter(fastify, _, done);
+  //  boardRouter(fastify, _, done);
+  // tasksRouter(fastify, _, done);
 }

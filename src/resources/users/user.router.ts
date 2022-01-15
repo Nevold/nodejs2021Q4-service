@@ -70,11 +70,11 @@ const updateUserOptions = {
  * @param done - the function to continue with the lifecycle
  * @returns  Nothing is returned
  */
-export function userRouter(
+export async function userRouter(
   fastify: FastifyInstance,
   _: RegisterOptions,
   done: Done
-): void {
+): Promise<void> {
   fastify.get('/users', getUsersOptions);
   fastify.get('/users/:id', getUserOptions);
   fastify.post('/users', postUserOptions);

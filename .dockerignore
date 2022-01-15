@@ -19,5 +19,5 @@ Dockerfile
 Dockerfile*.*
 
 *database
-*db
+*postgres_db
 *logs
