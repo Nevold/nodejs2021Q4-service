@@ -13,6 +13,45 @@ import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 import path from 'path';
 
+logger.level = level;
+const server = fastify({ logger });
+
+process.on('uncaughtException', (err: Error) => {
+  // eslint-disable-next-line no-console
+  console.log(err.message);
+  process.exit(1);
+});
+
+process.on('unhandledRejection', (err: Error) => {
+  // eslint-disable-next-line no-console
+  console.log(err.message);
+  process.exit(1);
+});
+
+server.register<FastifyPluginOptions>(swagger, {
+  exposeRoute: true,
+  routePrefix: '/docs',
+  swagger: {
+    info: { title: 'fastify-api' },
+  },
+});
+
+server.addHook(
+  'preHandler',
+  (
+    req: FastifyRequest,
+    _: FastifyReply,
+    done: HookHandlerDoneFunction
+  ): void => {
+    if (req.body) {
+      req.log.info({ body: req.body }, 'parsed body');
+    }
+    done();
+  }
+);
+
+server.register(app);
+
 createConnection({
   type: 'postgres',
   host: config.POSTGRES_HOST,
@@ -26,56 +65,15 @@ createConnection({
   migrations: [path.join(__dirname, '/migrations/**/*.ts')],
 })
   .then(async () => {
-    logger.level = level;
-    const server = fastify({ logger });
-
-    process.on('uncaughtException', (err: Error) => {
-      // eslint-disable-next-line no-console
-      console.log(err.message);
-      process.exit(1);
-    });
-
-    process.on('unhandledRejection', (err: Error) => {
-      // eslint-disable-next-line no-console
-      console.log(err.message);
-      process.exit(1);
-    });
-
-    server.register<FastifyPluginOptions>(swagger, {
-      exposeRoute: true,
-      routePrefix: '/docs',
-      swagger: {
-        info: { title: 'fastify-api' },
-      },
-    });
-
-    server.addHook(
-      'preHandler',
-      (
-        req: FastifyRequest,
-        _: FastifyReply,
-        done: HookHandlerDoneFunction
-      ): void => {
-        if (req.body) {
-          req.log.info({ body: req.body }, 'parsed body');
-        }
-        done();
+    server.listen(
+      config.PORT,
+      config.HTTP_ADDRESS || config.HTTP_ADDRESS_DEFAULT,
+      (err: Error | null): void => {
+        if (err) throw new Error(err.message);
       }
     );
-
-    server.register(app);
-
-    const start = async () => {
-      try {
-        await server.listen(
-          config.PORT,
-          config.HTTP_ADDRESS || config.HTTP_ADDRESS_DEFAULT
-        );
-      } catch (err) {
-        server.log.error(err);
-        process.exit(1);
-      }
-    };
-    start();
   })
-  .catch((error) => console.log(error));
+  .catch((err: Error) => {
+    server.log.error(err);
+    process.exit(1);
+  });
