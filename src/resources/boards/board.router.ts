@@ -73,11 +73,11 @@ const updateBoardOptions = {
  * @param done - the function to continue with the lifecycle
  * @returns  Nothing is returned
  */
-export function boardRouter(
+export async function boardRouter(
   fastify: FastifyInstance,
   _: RegisterOptions,
   done: Done
-): void {
+): Promise<void> {
   fastify.get('/boards', getBoardsOptions);
   fastify.get('/boards/:id', getBoardOptions);
   fastify.post('/boards', postBoardOptions);

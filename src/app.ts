@@ -19,6 +19,6 @@ export async function app(
   done: Done
 ) {
   await userRouter(fastify, _, done);
-  //  boardRouter(fastify, _, done);
+  await boardRouter(fastify, _, done);
   // tasksRouter(fastify, _, done);
 }

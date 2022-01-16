@@ -11,9 +11,9 @@ import { logger } from './logger/logger';
 import { level } from './logger/logger-level';
 import 'reflect-metadata';
 import { createConnection } from 'typeorm';
+import path from 'path';
 
 // import { User } from './entity/User.model';
-// import path from 'path';
 
 // createConnection({
 //   type: 'postgres',
@@ -34,23 +34,19 @@ import { createConnection } from 'typeorm';
 //   //   subscribersDir: 'src/subscriber',
 //   // },
 // })
-createConnection()
+createConnection({
+  type: 'postgres',
+  host: config.POSTGRES_HOST,
+  port: +config.POSTGRES_PORT,
+  username: config.POSTGRES_USER,
+  password: config.POSTGRES_PASSWORD,
+  database: config.POSTGRES_DB,
+  entities: [path.join(__dirname, '/**/*.model.ts')],
+  synchronize: true,
+  migrationsRun: true,
+  migrations: [path.join(__dirname, '/migrations/**/*.ts')],
+})
   .then(async () => {
-    // console.log('Inserting a new user into the database...');
-    // const user = new User();
-    // user.name = 'Timber';
-    // user.login = 'Saw';
-    // user.password = '25';
-    // await connection.manager.save(user);
-    // console.log('Saved a new user with id: ' + user.id);
-    // console.log('Loading users from the database...');
-
-    // const users = await connection.manager.find(User);
-    // console.log('Loaded users: ', users);
-
-    // console.log('Here you can setup and run express/koa/any other framework.');
-    // ******************************************************
-
     logger.level = level;
     const server = fastify({ logger });
 
