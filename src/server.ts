@@ -13,27 +13,6 @@ import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 import path from 'path';
 
-// import { User } from './entity/User.model';
-
-// createConnection({
-//   type: 'postgres',
-//   host: 'postgres',
-//   port: 5432,
-//   username: 'postgres',
-//   password: 'postgres',
-//   database: 'postgres',
-//   entities: ['src/entity/**/*.ts'],
-//   // entities: [path.join(__dirname, '/**/*.model.ts')],
-//   synchronize: true,
-//   migrationsRun: true,
-//   migrations: ['src/migration/**/*.ts'],
-//   // subscribers: ['src/subscriber/**/*.ts'],
-//   // cli: {
-//   //   entitiesDir: 'src/entity',
-//   //   migrationsDir: 'src/migration',
-//   //   subscribersDir: 'src/subscriber',
-//   // },
-// })
 createConnection({
   type: 'postgres',
   host: config.POSTGRES_HOST,

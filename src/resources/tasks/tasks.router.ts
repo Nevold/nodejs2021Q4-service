@@ -76,11 +76,11 @@ const updateTaskOptions = {
  * @param done - the function to continue with the lifecycle
  * @returns  Nothing is returned
  */
-export function tasksRouter(
+export async function tasksRouter(
   fastify: FastifyInstance,
   _: RegisterOptions,
   done: Done
-): void {
+): Promise<void> {
   fastify.get('/boards/:boardId/tasks', getTasksOptions);
   fastify.get('/boards/:boardId/tasks/:taskId', getTaskOptions);
   fastify.post('/boards/:boardId/tasks', postTaskOptions);
