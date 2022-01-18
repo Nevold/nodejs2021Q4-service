@@ -1,6 +1,7 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { v4 as uuidv4 } from 'uuid';
-import { items } from '../db/db';
+import { getRepository } from 'typeorm';
+import { Task } from '../../entity/Task.model';
 
 type CustomRequestTask = FastifyRequest<{
   Params: { boardId: string; taskId: string };
@@ -19,19 +20,16 @@ type CustomRequestTask = FastifyRequest<{
  * @param  reply - the `Response` object to be processed.
  * @returns  Nothing is returned
  */
-export const getAllTasks = (
+export const getAllTasks = async (
   request: CustomRequestTask,
-  reply: FastifyReply
-): void => {
-  const { boardId: id } = request.params;
-
-  const currentItem = items.task?.filter((item) => item.boardId === id);
-  if (currentItem?.length === 0) {
-    reply.code(404).send('Not Found');
-  } else {
-    reply.status(200);
-    reply.send(currentItem);
-  }
+  _: FastifyReply
+): Promise<Task[]> => {
+  const { boardId } = request.params;
+  const tasks = await getRepository(Task).find({
+    where: { boardId },
+    loadRelationIds: true,
+  });
+  return tasks;
 };
 
 /**
@@ -41,20 +39,19 @@ export const getAllTasks = (
  * @param  reply - the `Response` object to be processed.
  * @returns  Nothing is returned
  */
-export const getSingleTask = (
+export const getSingleTask = async (
   request: CustomRequestTask,
   reply: FastifyReply
-): void => {
+): Promise<Task | undefined> => {
   const { taskId, boardId } = request.params;
-  const currentItem = items.task?.filter(
-    (item) => item.id === taskId && item.boardId === boardId
-  )[0];
-
-  if (!currentItem) {
-    reply.code(404).send('Not Found');
-  } else {
-    reply.send(currentItem);
+  const currentTask = await getRepository(Task).findOne(taskId, {
+    where: { boardId },
+    loadRelationIds: true,
+  });
+  if (!currentTask) {
+    reply.code(404).send('NOT_FOUND');
   }
+  return currentTask;
 };
 
 /**
@@ -64,10 +61,10 @@ export const getSingleTask = (
  * @param  reply - the `Response` object to be processed.
  * @returns  Nothing is returned
  */
-export const addTask = (
+export const addTask = async (
   request: CustomRequestTask,
   reply: FastifyReply
-): void => {
+): Promise<void> => {
   const { title, columnId, description, order, userId } = request.body;
   const { boardId: id } = request.params;
   const newTask = {
@@ -79,11 +76,8 @@ export const addTask = (
     boardId: id,
     columnId,
   };
-  if (items.task) {
-    items.task = [...items.task, newTask];
-  }
-
-  reply.code(201).send(newTask);
+  const task = await getRepository(Task).save(newTask);
+  reply.code(201).send(task);
 };
 
 /**
@@ -93,20 +87,13 @@ export const addTask = (
  * @param  reply - the `Response` object to be processed.
  * @returns  Nothing is returned
  */
-export const deleteTask = (
+export const deleteTask = async (
   request: CustomRequestTask,
   reply: FastifyReply
-): void => {
+): Promise<void> => {
   const { taskId } = request.params;
-
-  const currentItem = items.task?.find((item) => item.id === taskId);
-
-  if (!currentItem) {
-    reply.code(404).send('Not Found');
-  } else {
-    items.task = items.task?.filter((item) => item.id !== taskId);
-    reply.send('Deleted');
-  }
+  await getRepository(Task).delete(taskId);
+  reply.send('DELETED');
 };
 
 /**
@@ -116,50 +103,15 @@ export const deleteTask = (
  * @param  reply - the `Response` object to be processed.
  * @returns  Nothing is returned
  */
-export const updateTask = (
+export const updateTask = async (
   request: CustomRequestTask,
   reply: FastifyReply
-): void => {
-  const { title, order, description } = request.body;
+): Promise<void> => {
   const { taskId } = request.params;
-  const currentItem = items.task?.find((item) => item.id === taskId);
-  if (!currentItem) {
-    reply.code(404).send('Not Found');
-  } else {
-    items.task = items.task?.map((elem) =>
-      elem.id === taskId ? { ...elem, title, order, description } : elem
-    );
-    const updateItem = items.task?.find((item) => item.id === taskId);
-    reply.send(updateItem);
-  }
-};
+  await getRepository(Task).update(taskId, {
+    ...request.body,
+  });
+  const taskToUpdate = await getRepository(Task).findOne(taskId);
 
-/**
- **
- * Iteration over the array with the subsequent removal of the required value.
- * @param userId -the string on which the comparison is performed
- * @returns  Nothing is returned
- */
-export const deleteUserDependentTask = (userId: string): void => {
-  if (items.task) {
-    for (let i = 0; i < items.task.length; i++) {
-      if (items.task[i].userId === userId) {
-        items.task[i] = { ...items.task[i], userId: null };
-      }
-    }
-  }
-};
-
-/**
- **
- * Iteration over the array with the subsequent removal of the required value.
- * @param userId -the string on which the comparison is performed
- * @returns  Nothing is returned
- */
-export const deleteBoardDependentTask = (boardId: string): void => {
-  if (items.task) {
-    for (let i = items.task.length - 1; i >= 0; i -= 1) {
-      if (items.task[i].boardId === boardId) items.task.splice(i, 1);
-    }
-  }
+  if (taskToUpdate) reply.send(taskToUpdate);
 };

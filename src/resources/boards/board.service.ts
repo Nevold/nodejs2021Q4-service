@@ -1,9 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { getRepository } from 'typeorm';
-import { v4 as uuidv4 } from 'uuid';
-import { items } from '../db/db';
-import { deleteBoardDependentTask } from '../tasks/tasks.service';
-import { Board } from './../../entity/Board.model';
+import { Board } from '../../entity/Board.model';
 
 type CustomRequestBoard = FastifyRequest<{
   Params: { id: string; boardId: string; taskId: string };
@@ -23,9 +20,9 @@ type CustomRequestBoard = FastifyRequest<{
 export const getAllBoards = async (
   _: CustomRequestBoard,
   reply: FastifyReply
-): Promise<void> => {
-  const boards = await getRepository(Board).find({ relations: ['columns'] });
-  return reply.send(boards);
+): Promise<Board[]> => {
+  const boards = await getRepository(Board).find();
+  return boards;
 };
 
 /**
@@ -38,15 +35,13 @@ export const getAllBoards = async (
 export const getSingleBoard = async (
   request: CustomRequestBoard,
   reply: FastifyReply
-): Promise<void> => {
+): Promise<Board | undefined> => {
   const { id } = request.params;
-  const currentBoard = await getRepository(Board).findOne(id, {
-    relations: ['columns'],
-  });
+  const currentBoard = await getRepository(Board).findOne(id);
   if (!currentBoard) {
     reply.code(404).send('Not Found');
   }
-  return reply.send(currentBoard);
+  return currentBoard;
 };
 
 /**
@@ -76,7 +71,6 @@ export const deleteBoard = async (
   reply: FastifyReply
 ): Promise<void> => {
   const { id } = request.params;
-  deleteBoardDependentTask(id);
   await getRepository(Board).delete(id);
   reply.send('Deleted');
 };

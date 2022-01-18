@@ -5,13 +5,13 @@ import fastify, {
   HookHandlerDoneFunction,
 } from 'fastify';
 import swagger from 'fastify-swagger';
+import { createConnection } from 'typeorm';
+import path from 'path';
+import 'reflect-metadata';
 import { app } from './app';
 import config from './common/config';
 import { logger } from './logger/logger';
 import { level } from './logger/logger-level';
-import 'reflect-metadata';
-import { createConnection } from 'typeorm';
-import path from 'path';
 
 logger.level = level;
 const server = fastify({ logger });

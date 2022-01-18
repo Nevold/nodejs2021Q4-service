@@ -57,6 +57,8 @@
         "tryExtensions": [".js", ".json", ".node", ".ts", ".cjs"]
       }
     ],
-    "import/no-extraneous-dependencies": "off"
+    "import/no-extraneous-dependencies": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "off"
   }
 }

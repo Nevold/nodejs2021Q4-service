@@ -1,19 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { BoardColumn } from './Column.model';
-// enum Columns { Array<{ id: string; title: string; order: number }>;}
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-// @Entity()
-// export class Board {
-//   @PrimaryGeneratedColumn('uuid')
-//   id!: number;
-
-//   @Column()
-//   title!: string;
-
-//   @Column()
-//   columns!: string;
-// }
-@Entity()
+interface IColumns {
+  id: string;
+  title: string;
+  order: number;
+}
+@Entity({ name: 'board' })
 export class Board {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -21,6 +13,6 @@ export class Board {
   @Column('text')
   title: string;
 
-  @OneToMany(() => BoardColumn, (column) => column.boardId)
-  columns: BoardColumn[];
+  @Column({ type: 'json', nullable: true })
+  columns: IColumns[];
 }

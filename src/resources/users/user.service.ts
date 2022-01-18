@@ -1,9 +1,6 @@
-import { v4 as uuidv4 } from 'uuid';
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { items } from '../db/db';
-import { deleteUserDependentTask } from '../tasks/tasks.service';
-import { User } from '../../entity/User.model';
 import { getRepository } from 'typeorm';
+import { User } from '../../entity/User.model';
 
 type CustomRequest = FastifyRequest<{
   Params: { id: string };
@@ -24,9 +21,9 @@ type CustomRequest = FastifyRequest<{
 export const getAllItems = async (
   _: CustomRequest,
   reply: FastifyReply
-): Promise<void> => {
+): Promise<User[]> => {
   const users = await getRepository(User).find();
-  return reply.send(users);
+  return users;
 };
 
 /**
@@ -39,13 +36,13 @@ export const getAllItems = async (
 export const getSingleItem = async (
   request: CustomRequest,
   reply: FastifyReply
-): Promise<void> => {
+): Promise<User | undefined> => {
   const { id } = request.params;
   const currentUser = await getRepository(User).findOne(id);
   if (!currentUser) {
     reply.code(404).send('Not Found');
   }
-  return reply.send(currentUser);
+  return currentUser;
 };
 
 /**
@@ -75,9 +72,8 @@ export const deleteSingleItem = async (
   reply: FastifyReply
 ): Promise<void> => {
   const { id } = request.params;
-  deleteUserDependentTask(id);
   await getRepository(User).delete(id);
-  reply.send('Deleted');
+  reply.send('DELETED');
 };
 
 /**
