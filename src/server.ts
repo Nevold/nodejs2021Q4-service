@@ -63,6 +63,10 @@ createConnection({
   synchronize: true,
   migrationsRun: true,
   migrations: [path.join(__dirname, '/migrations/**/*.ts')],
+  cli: {
+    entitiesDir: './src/entity',
+    migrationsDir: './src/migrations',
+  },
 })
   .then(async () => {
     server.listen(

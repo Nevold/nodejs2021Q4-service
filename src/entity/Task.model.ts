@@ -25,6 +25,7 @@ export class Task {
   @ManyToOne(() => User, (user) => user.id, {
     onDelete: 'SET NULL',
     nullable: true,
+    cascade: true,
   })
   @JoinColumn({ name: 'userId' })
   userId: string | null;
@@ -32,6 +33,7 @@ export class Task {
   @ManyToOne(() => Board, (board) => board.id, {
     onDelete: 'SET NULL',
     nullable: true,
+    cascade: true,
   })
   @JoinColumn({ name: 'boardId' })
   boardId: string | null;
