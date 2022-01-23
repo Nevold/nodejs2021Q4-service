@@ -1,6 +1,7 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { getRepository } from 'typeorm';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
 import config from '../../common/config';
 import { User } from '../../entity/User.model';
 
@@ -14,26 +15,33 @@ type CustomRequest = FastifyRequest<{
 }>;
 
 export const getUserProps = async (
-  login: string
+  login: string,
+  password: string
 ): Promise<User | undefined> => {
   const users = await getRepository(User).find();
-  const currentUser = users.find((user) => user.login === login);
+  const currentUser = users.find(
+    (user) =>
+      user.login === login && bcrypt.compareSync(password, user.password)
+  );
   return currentUser;
 };
 
-export const signToken = async (userLogin: string): Promise<string | null> => {
-  const user = await getUserProps(userLogin);
+export const signToken = async (
+  userLogin: string,
+  userPassword: string
+): Promise<string | null> => {
+  const user = await getUserProps(userLogin, userPassword);
   if (!user) return null;
-  const { login, password } = user;
-  return jwt.sign({ login, password }, config.JWT_SECRET_KEY);
+  const { login, id } = user;
+  return jwt.sign({ login, id }, config.JWT_SECRET_KEY);
 };
 
 export const addLoginInfo = async (
   request: CustomRequest,
   reply: FastifyReply
 ): Promise<void> => {
-  const { login } = request.body;
-  const token = await signToken(login);
+  const { login, password } = request.body;
+  const token = await signToken(login, password);
   if (!token) {
     reply.code(403).send('Forbidden');
   } else {
