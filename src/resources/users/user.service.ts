@@ -1,4 +1,5 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
+import bcrypt from 'bcryptjs';
 import { getRepository } from 'typeorm';
 import { User } from '../../entity/User.model';
 
@@ -56,7 +57,14 @@ export const addSingleItem = async (
   request: CustomRequest,
   reply: FastifyReply
 ): Promise<void> => {
-  const user = await getRepository(User).save(request.body);
+  const { name, login, password } = request.body;
+  const hash = await bcrypt.hash(password, 5);
+  const newUser = {
+    name,
+    login,
+    password: hash,
+  };
+  const user = await getRepository(User).save(newUser);
   reply.code(201).send(user);
 };
 

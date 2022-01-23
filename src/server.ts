@@ -8,6 +8,7 @@ import swagger from 'fastify-swagger';
 import { createConnection } from 'typeorm';
 import path from 'path';
 import 'reflect-metadata';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 import { app } from './app';
 import config from './common/config';
 import { logger } from './logger/logger';
@@ -47,6 +48,30 @@ server.addHook(
       req.log.info({ body: req.body }, 'parsed body');
     }
     done();
+  }
+);
+
+server.addHook(
+  'preHandler',
+  (req: FastifyRequest, reply: FastifyReply, next): void => {
+    const isUsers = req.url.split('/')[1] === 'users';
+    const isBoards = req.url.split('/')[1] === 'boards';
+    const isTasks = req.url.split('/')[3] === 'tasks';
+    const auth = req.headers.authorization;
+    if (auth == undefined && (isUsers || isBoards || isTasks)) {
+      reply.code(401).send('Unauthorized');
+      return;
+    }
+    if (auth !== undefined) {
+      const [type, token] = auth.split(' ');
+      if (type !== 'Bearer' || !token) {
+        reply.code(401).send('Unauthorized');
+        return;
+      }
+      jwt.verify(token, config.JWT_SECRET_KEY);
+      next();
+    }
+    next();
   }
 );
 

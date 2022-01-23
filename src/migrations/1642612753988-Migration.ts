@@ -95,6 +95,9 @@ export class Migration1642612753988 implements MigrationInterface {
       }),
       true
     );
+    await queryRunner.query(
+      `INSERT INTO "user" (name,login,password) VALUES ('admin','admin','$2a$05$GwyNXy4f7FuuwO981QGu5ONrKxlpo9OZYFKaLLkqQXLwGRa0sdzei')`
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {

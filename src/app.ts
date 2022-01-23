@@ -3,6 +3,7 @@ import { FastifyInstance, RegisterOptions } from 'fastify';
 import { userRouter } from './resources/users/user.router';
 import { boardRouter } from './resources/boards/board.router';
 import { tasksRouter } from './resources/tasks/tasks.router';
+import { loginRouter } from './resources/login/login.router';
 
 export type Done = () => void;
 
@@ -21,4 +22,5 @@ export async function app(
   await userRouter(fastify, _, done);
   await boardRouter(fastify, _, done);
   await tasksRouter(fastify, _, done);
+  await loginRouter(fastify, _, done);
 }

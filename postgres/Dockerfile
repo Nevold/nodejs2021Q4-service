@@ -1,2 +1,2 @@
-
-FROM postgres:9.6.24-alpine3.15
+FROM postgres:14-alpine
+RUN apk update && apk upgrade

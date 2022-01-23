@@ -14,6 +14,7 @@ const ItemUser = {
     id: { type: 'string' },
     name: { type: 'string' },
     login: { type: 'string' },
+    password: { type: 'string' },
   },
 };
 
