@@ -58,7 +58,7 @@ server.addHook(
     const isBoards = req.url.split('/')[1] === 'boards';
     const isTasks = req.url.split('/')[3] === 'tasks';
     const auth = req.headers.authorization;
-    if (auth == undefined && (isUsers || isBoards || isTasks)) {
+    if (auth === undefined && (isUsers || isBoards || isTasks)) {
       reply.code(401).send('Unauthorized');
       return;
     }
@@ -69,6 +69,7 @@ server.addHook(
         return;
       }
       jwt.verify(token, config.JWT_SECRET_KEY);
+
       next();
     }
     next();

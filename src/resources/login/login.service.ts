@@ -13,6 +13,21 @@ type CustomRequest = FastifyRequest<{
   };
 }>;
 
+export const getUserProps = async (
+  login: string
+): Promise<User | undefined> => {
+  const users = await getRepository(User).find();
+  const currentUser = users.find((user) => user.login === login);
+  return currentUser;
+};
+
+export const signToken = async (userLogin: string): Promise<string | null> => {
+  const user = await getUserProps(userLogin);
+  if (!user) return null;
+  const { login, password } = user;
+  return jwt.sign({ login, password }, config.JWT_SECRET_KEY);
+};
+
 export const addLoginInfo = async (
   request: CustomRequest,
   reply: FastifyReply
@@ -24,19 +39,4 @@ export const addLoginInfo = async (
   } else {
     reply.code(200).send(token);
   }
-};
-
-export const signToken = async (userLogin: string): Promise<string | null> => {
-  const user = await getUserProps(userLogin);
-  if (!user) return null;
-  const { login, password } = user;
-  return jwt.sign({ login, password }, config.JWT_SECRET_KEY);
-};
-
-export const getUserProps = async (
-  login: string
-): Promise<User | undefined> => {
-  const users = await getRepository(User).find();
-  const currentUser = users.find((user) => user.login === login);
-  return currentUser;
 };
