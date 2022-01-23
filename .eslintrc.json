@@ -6,18 +6,35 @@
     "jest": true,
     "node": true
   },
+  "parser": "@typescript-eslint/parser",
+
   "parserOptions": {
+    "project": "./tsconfig.json",
+    "tsconfigRootDir": "./",
     "sourceType": "module",
     "ecmaVersion": 2021,
+    "createDefaultProgram": true,
     "ecmaFeatures": {
       "impliedStrict": true
     }
   },
   "settings": {
-    "noInlineConfig": true
+    "noInlineConfig": true,
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".cjs"]
+      }
+    },
+    "node": {
+      "allowModules": ["electron"],
+      "resolvePaths": ["__dirname"],
+      "tryExtensions": [".js", ".json", ".node", ".ts", ".cjs"]
+    }
   },
+  "plugins": ["@typescript-eslint", "eslint-plugin-tsdoc"],
   "extends": [
     "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:node/recommended",
     "airbnb-base",
     "prettier"
@@ -27,6 +44,22 @@
     "linebreak-style": "off",
     "node/no-unsupported-features/es-syntax": "off",
     "no-underscore-dangle": "off",
-    "import/prefer-default-export": "off"
+    "tsdoc/syntax": "error",
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "import/prefer-default-export": "off",
+    "@typescript-eslint/no-explicit-any": ["error"],
+    "lines-between-class-members": "off",
+    "node/no-missing-require": [
+      "error",
+      {
+        "allowModules": ["electron"],
+        "resolvePaths": ["/node_modules"],
+        "tryExtensions": [".js", ".json", ".node", ".ts", ".cjs"]
+      }
+    ],
+    "import/no-extraneous-dependencies": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "class-methods-use-this": "off"
   }
 }
