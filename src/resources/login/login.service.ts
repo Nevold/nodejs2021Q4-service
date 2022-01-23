@@ -45,6 +45,6 @@ export const addLoginInfo = async (
   if (!token) {
     reply.code(403).send('Forbidden');
   } else {
-    reply.code(200).send(token);
+    reply.code(200).send({ token: token });
   }
 };
