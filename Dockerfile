@@ -9,4 +9,4 @@ RUN npm ci && npm cache clean --force
 
 COPY . .
 
-CMD  ["npm","run", "start:docker"]
+CMD  ["npm","run", "start:dev"]
