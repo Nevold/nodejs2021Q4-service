@@ -4,11 +4,11 @@ config:
     - duration: 30
       arrivalRate: 5
       name: Warm up
-    - duration: 60
+    - duration: 45
       arrivalRate: 5
       rampTo: 10
       name: Ramp up load
-    - duration: 90
+    - duration: 60
       arrivalRate: 10
       name: Sustained load
 
@@ -23,6 +23,9 @@ scenarios:
             name: 'name'
             login: 'login'
             password: 'password'
+          capture:
+            - json: '$.id'
+              as: id
           expect:
             - statusCode: 201
       - get:
@@ -35,13 +38,13 @@ scenarios:
       - get:
           headers:
             Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI0ODQxODI4LWJlOTctNDY0NC1hYjFiLWJlOWI2ZDI1ZTcwOCIsImxvZ2luIjoiYWRtaW4iLCJpYXQiOjE2NDM5MTczNjV9.Cb6HiZOI71TiKQQdWRYegNxEfVYtTMtqK4HDz9xFYrM'
-          url: '/users/ff20d63a-32e0-4ff9-a1d6-04338b3cb1e0'
+          url: '/users/{{ id }}'
           expect:
             - statusCode: 200
       - put:
           headers:
             Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI0ODQxODI4LWJlOTctNDY0NC1hYjFiLWJlOWI2ZDI1ZTcwOCIsImxvZ2luIjoiYWRtaW4iLCJpYXQiOjE2NDM5MTczNjV9.Cb6HiZOI71TiKQQdWRYegNxEfVYtTMtqK4HDz9xFYrM'
-          url: '/users/ff20d63a-32e0-4ff9-a1d6-04338b3cb1e0'
+          url: '/users/{{ id }}'
           json:
             name: 'another name'
             login: 'another login'
@@ -51,6 +54,6 @@ scenarios:
       - delete:
           headers:
             Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI0ODQxODI4LWJlOTctNDY0NC1hYjFiLWJlOWI2ZDI1ZTcwOCIsImxvZ2luIjoiYWRtaW4iLCJpYXQiOjE2NDM5MTczNjV9.Cb6HiZOI71TiKQQdWRYegNxEfVYtTMtqK4HDz9xFYrM'
-          url: '/users/ff20d63a-32e0-4ff9-a1d6-04338b3cb1e0'
+          url: '/users/{{ id }}'
           expect:
             - statusCode: 200

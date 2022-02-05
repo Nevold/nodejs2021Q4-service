@@ -8,7 +8,6 @@ export class FilesService {
     try {
       const fileName = file.originalname;
       const filePath = path.resolve(__dirname, '..', 'static');
-      console.log(filePath);
       if (!fs.existsSync(filePath)) {
         fs.mkdirSync(filePath, { recursive: true });
       }
