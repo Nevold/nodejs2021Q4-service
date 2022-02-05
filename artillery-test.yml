@@ -1,0 +1,56 @@
+config:
+  target: 'http://127.0.0.1:4000'
+  phases:
+    - duration: 30
+      arrivalRate: 5
+      name: Warm up
+    - duration: 60
+      arrivalRate: 5
+      rampTo: 10
+      name: Ramp up load
+    - duration: 90
+      arrivalRate: 10
+      name: Sustained load
+
+scenarios:
+  - name: 'Users test'
+    flow:
+      - post:
+          headers:
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI0ODQxODI4LWJlOTctNDY0NC1hYjFiLWJlOWI2ZDI1ZTcwOCIsImxvZ2luIjoiYWRtaW4iLCJpYXQiOjE2NDM5MTczNjV9.Cb6HiZOI71TiKQQdWRYegNxEfVYtTMtqK4HDz9xFYrM'
+          url: '/users'
+          json:
+            name: 'name'
+            login: 'login'
+            password: 'password'
+          expect:
+            - statusCode: 201
+      - get:
+          headers:
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI0ODQxODI4LWJlOTctNDY0NC1hYjFiLWJlOWI2ZDI1ZTcwOCIsImxvZ2luIjoiYWRtaW4iLCJpYXQiOjE2NDM5MTczNjV9.Cb6HiZOI71TiKQQdWRYegNxEfVYtTMtqK4HDz9xFYrM'
+          url: '/users'
+          expect:
+            - statusCode: 200
+
+      - get:
+          headers:
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI0ODQxODI4LWJlOTctNDY0NC1hYjFiLWJlOWI2ZDI1ZTcwOCIsImxvZ2luIjoiYWRtaW4iLCJpYXQiOjE2NDM5MTczNjV9.Cb6HiZOI71TiKQQdWRYegNxEfVYtTMtqK4HDz9xFYrM'
+          url: '/users/ff20d63a-32e0-4ff9-a1d6-04338b3cb1e0'
+          expect:
+            - statusCode: 200
+      - put:
+          headers:
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI0ODQxODI4LWJlOTctNDY0NC1hYjFiLWJlOWI2ZDI1ZTcwOCIsImxvZ2luIjoiYWRtaW4iLCJpYXQiOjE2NDM5MTczNjV9.Cb6HiZOI71TiKQQdWRYegNxEfVYtTMtqK4HDz9xFYrM'
+          url: '/users/ff20d63a-32e0-4ff9-a1d6-04338b3cb1e0'
+          json:
+            name: 'another name'
+            login: 'another login'
+            password: 'another password'
+          expect:
+            - statusCode: 201
+      - delete:
+          headers:
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImI0ODQxODI4LWJlOTctNDY0NC1hYjFiLWJlOWI2ZDI1ZTcwOCIsImxvZ2luIjoiYWRtaW4iLCJpYXQiOjE2NDM5MTczNjV9.Cb6HiZOI71TiKQQdWRYegNxEfVYtTMtqK4HDz9xFYrM'
+          url: '/users/ff20d63a-32e0-4ff9-a1d6-04338b3cb1e0'
+          expect:
+            - statusCode: 200
