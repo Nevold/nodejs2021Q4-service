@@ -11,8 +11,10 @@ export class FilesService {
       if (!fs.existsSync(filePath)) {
         fs.mkdirSync(filePath, { recursive: true });
       }
-      fs.writeFileSync(path.join(filePath, fileName), file.buffer);
-      return fileName;
+      const writeStream = fs.createWriteStream(path.join(filePath, fileName));
+      writeStream.write(file.buffer);
+      writeStream.end();
+      return `Copy this to download the file... ${fileName}`;
     } catch (e) {
       throw new HttpException('Error', HttpStatus.INTERNAL_SERVER_ERROR);
     }
