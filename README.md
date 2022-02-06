@@ -1,5 +1,99 @@
 # RS School REST service
 
+# Nest
+
+### Running application with Nest
+
+**Downloading:**
+
+```sh
+git clone {repository URL}
+```
+
+**Installing NPM modules:**
+
+```sh
+npm ci
+```
+
+**Running application (two ways):**
+
+using Docker:
+
+```sh
+docker-compose up --build
+
+docker-compose up
+```
+
+locally:
+
+```sh
+npm run start:dev
+```
+
+> Note: don't forget to at least change in file **.env** POSTGRES_HOST to `localhost` and POSTGRES_PASSWORD to `your password base`
+
+**Testing:**
+
+```sh
+npm run test:auth
+```
+
+**Uploading file:**
+
+> Note: use KEY `file` in form-data
+
+## TEST fastify
+
+| operation                          | value  |
+| ---------------------------------- | ------ |
+| http.codes.200:                    | 4320   |
+| http.codes.201:                    | 1080   |
+| http.request_rate:                 | 40/sec |
+| http.requests:                     | 5400   |
+| http.response_time:                |
+| min:                               | 0      |
+| max:                               | 319    |
+| median:                            | 4      |
+| p95:                               | 22     |
+| p99:                               | 34.1   |
+| http.responses:                    | 5400   |
+| vusers.completed:                  | 1080   |
+| vusers.created:                    | 1080   |
+| vusers.created_by_name.Users test: | 1080   |
+| vusers.session_length:             |
+| min:                               | 20.2   |
+| max:                               | 420.3  |
+| median:                            | 43.4   |
+| p95:                               | 85.6   |
+| p99:                               | 122.7  |
+
+## TEST express
+
+| operation                          | value  |
+| ---------------------------------- | ------ |
+| http.codes.200:                    | 4348   |
+| http.codes.201:                    | 1087   |
+| http.request_rate:                 | 41/sec |
+| http.requests:                     | 5435   |
+| http.response_time:                |
+| min:                               | 0      |
+| max:                               | 533    |
+| median:                            | 6      |
+| p95:                               | 22.9   |
+| p99:                               | 36.2   |
+| http.responses:                    | 5435   |
+| vusers.completed:                  | 1087   |
+| vusers.created:                    | 1087   |
+| vusers.created_by_name.Users test: | 1087   |
+| vusers.session_length:             |
+| min:                               | 22.9   |
+| max:                               | 1132.9 |
+| median:                            | 48.9   |
+| p95:                               | 90.9   |
+| p99:                               | 135.7  |
+
 ## Prerequisites
 
 - Git - [Download & Install Git](https://git-scm.com/downloads).
@@ -70,3 +164,11 @@ npm run lint
 Press <kbd>F5</kbd> to debug.
 
 For more information, visit: https://code.visualstudio.com/docs/editor/debugging
+
+## Running application with Docker
+
+Downloading: <kbd>git clone {repository URL}</kbd>
+
+Installing NPM modules: <kbd>npm install</kbd>
+
+Running application: <kbd>docker-compose up </kbd> or <kbd>docker-compose up --build</kbd>
